@@ -2,9 +2,8 @@ package handler
 
 import (
 	"fmt"
-	mylayer "github.com/lsj575/filestore-server/db"
-	"github.com/lsj575/filestore-server/util"
-	"io/ioutil"
+	mylayer "github.com/lsj575/kxtx/server/db"
+	"github.com/lsj575/kxtx/server/util"
 	"net/http"
 	"time"
 )
@@ -15,45 +14,28 @@ const (
 
 // 处理用户注册请求
 func SignUpHandler(w http.ResponseWriter, r *http.Request) {
-	if r.Method == http.MethodGet {
-		data, err := ioutil.ReadFile("./static/view/signup.html")
-		if err != nil {
-			w.WriteHeader(http.StatusInternalServerError)
-			return
-		}
-
-		w.Write(data)
-		return
-	} else {
+	if r.Method == http.MethodPost {
 		r.ParseForm()
 		username := r.Form.Get("username")
 		password := r.Form.Get("password")
 
 		if len(username) < 3 || len(password) < 5 {
-			w.Write([]byte("Invalid parameter"))
+			w.Write(util.NewRespMsg(1, "Invalid parameter", nil).JSONBytes())
 			return
 		}
 
 		enc_pwd := util.Sha1([]byte(password + pwd_salt))
 		suc := mylayer.UserSignUp(username, enc_pwd)
 		if suc {
-			w.Write([]byte("SUCCESS"))
+			w.Write(util.NewRespMsg(0, "SUCCESS", nil).JSONBytes())
 		} else {
-			w.Write([]byte("FAIL"))
+			w.Write(util.NewRespMsg(1, "FAILED", nil).JSONBytes())
 		}
 	}
 }
 
 // 登录接口
 func SignInHandler(w http.ResponseWriter, r *http.Request) {
-	if r.Method == http.MethodGet {
-		data, err := ioutil.ReadFile("./static/view/signin.html")
-		if err != nil {
-			w.WriteHeader(http.StatusInternalServerError)
-			return
-		}
-		w.Write(data)
-	}
 	r.ParseForm()
 	username := r.Form.Get("username")
 	password := r.Form.Get("password")
@@ -62,7 +44,7 @@ func SignInHandler(w http.ResponseWriter, r *http.Request) {
 	// 校验用户名密码
 	pwdChecked := mylayer.UserSignIn(username, enc_pwd)
 	if !pwdChecked {
-		w.Write([]byte("FAILED"))
+		w.Write(util.NewRespMsg(1, "FAILED", nil).JSONBytes())
 		return
 	}
 
@@ -70,7 +52,7 @@ func SignInHandler(w http.ResponseWriter, r *http.Request) {
 	token := GenToken(username)
 	updateToken := mylayer.UpdateToken(username, token)
 	if !updateToken {
-		w.Write([]byte("FAILED"))
+		w.Write(util.NewRespMsg(1, "FAILED", nil).JSONBytes())
 		return
 	}
 
@@ -79,11 +61,9 @@ func SignInHandler(w http.ResponseWriter, r *http.Request) {
 		Code: 0,
 		Msg:  "OK",
 		Data: struct {
-			Location string
 			Username string
 			Token    string
 		}{
-			Location: "http://" + r.Host + "/static/view/home.html",
 			Username: username,
 			Token:    token,
 		},

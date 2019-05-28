@@ -2,20 +2,21 @@ package db
 
 import (
 	"fmt"
-	mydb "github.com/lsj575/kxtx/server/dbrver/db/mysql"
+	mydb "github.com/lsj575/kxtx/server/db/mysql"
+	"time"
 )
 
 // 通过用户名和密码完成用户注册操作
 func UserSignUp(username string, password string) bool {
 	stmt, err := mydb.DBConn().Prepare(
-		"INSERT ignore INTO tbl_user (`user_name`, `user_pwd`) values (?, ?)")
+		"INSERT INTO user (`username`, `password`, `create_time`) values (?, ?, ?)")
 	if err != nil {
 		fmt.Println("Failed to insert, err: ", err)
 		return false
 	}
 	defer stmt.Close()
 
-	result, err := stmt.Exec(username, password)
+	result, err := stmt.Exec(username, password, time.Now().Unix())
 	if err != nil {
 		fmt.Println("Failed to insert, err: ", err)
 		return false
@@ -31,7 +32,7 @@ func UserSignUp(username string, password string) bool {
 // 判断密码是否一致
 func UserSignIn(username string, password string) bool {
 	stmt, err := mydb.DBConn().Prepare(
-		"SELECT * FROM tbl_user WHERE user_name = ? LIMIT 1")
+		"SELECT * FROM user WHERE username = ? LIMIT 1")
 	if err != nil {
 		fmt.Println("Failed to find, err: ", err)
 		return false
@@ -48,7 +49,7 @@ func UserSignIn(username string, password string) bool {
 	}
 
 	parseRows := mydb.ParseRows(rows)
-	if len(parseRows) > 0 && string(parseRows[0]["user_pwd"].([]byte)) == password {
+	if len(parseRows) > 0 && string(parseRows[0]["password"].([]byte)) == password {
 		return true
 	}
 
@@ -58,14 +59,14 @@ func UserSignIn(username string, password string) bool {
 // 更新用户登录的token
 func UpdateToken(username string, token string) bool {
 	stmt, err := mydb.DBConn().Prepare(
-		"REPLACE INTO tbl_user_token (`user_name`, `user_token`) values (?, ?)")
+		"UPDATE user SET token = ?, last_login_time = ? WHERE username = ?")
 	if err != nil {
 		fmt.Println(err.Error())
 		return false
 	}
 	defer stmt.Close()
 
-	_, err = stmt.Exec(username, token)
+	_, err = stmt.Exec(token, time.Now().Unix(), username)
 	if err != nil {
 		fmt.Println(err.Error())
 		return false
@@ -75,8 +76,6 @@ func UpdateToken(username string, token string) bool {
 
 type User struct {
 	Username string
-	Email string
-	Phone string
 	SignupAt string
 	LastActiveAt string
 	Status int
@@ -86,14 +85,14 @@ func GetUserInfo(username string) (User, error) {
 	user := User{}
 
 	stmt, err := mydb.DBConn().Prepare(
-		"SELECT user_name, signup_at FROM tbl_user WHERE user_name = ? LIMIT 1")
+		"SELECT username, create_time, last_login_time, status FROM user WHERE username = ? LIMIT 1")
 	if err != nil {
 		fmt.Println(err.Error())
 		return user, err
 	}
 	defer stmt.Close()
 
-	err = stmt.QueryRow(username).Scan(&user.Username, &user.SignupAt)
+	err = stmt.QueryRow(username).Scan(&user.Username, &user.SignupAt, &user.LastActiveAt, &user.Status)
 	if err != nil {
 		return user, err
 	}
