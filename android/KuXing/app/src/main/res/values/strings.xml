@@ -3,4 +3,10 @@
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
+    <string name="share">分享</string>
+    <string name="delete">删除</string>
+    <string name="detail">记事详情</string>
+    <string name="map">地图</string>
+    <string name="community">动态</string>
+    <string name="mine">我的</string>
 </resources>
