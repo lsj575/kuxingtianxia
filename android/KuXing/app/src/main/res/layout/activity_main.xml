@@ -13,7 +13,8 @@
         android:orientation="horizontal"
         android:paddingTop="5dp"
         android:paddingBottom="5dp"
-        android:layout_alignParentBottom="true">
+        android:layout_alignParentBottom="true"
+        app:layout_constraintBottom_toBottomOf="parent">
         <RadioButton
             android:id="@+id/radio0"
             android:layout_width="wrap_content"
@@ -48,12 +49,14 @@
             android:text="@string/mine" />
 
     </RadioGroup>
+    
     <FrameLayout
         android:id="@+id/layout_content"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:layout_above="@+id/bottom_bar"
-        android:layout_marginBottom="-50dp">
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/bottom_bar">
     </FrameLayout>
+
+
 
 </RelativeLayout>
