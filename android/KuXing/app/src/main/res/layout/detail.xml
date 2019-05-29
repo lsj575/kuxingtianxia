@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <EditText
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="记事标题"
+        android:textSize="24sp" />
+
+    <TextView
+        android:id="@+id/date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/title"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="-5dp"
+        android:text="2019/05/28 15:30" />
+
+    <ImageView
+        android:id="@+id/imageDibiao"
+        android:layout_width="20dp"
+        android:layout_height="26dp"
+        android:layout_below="@+id/date"
+        android:layout_alignStart="@+id/date"
+        android:layout_marginStart="2dp"
+        android:layout_marginTop="2dp"
+        app:srcCompat="@mipmap/dibiao" />
+
+    <TextView
+        android:id="@+id/location"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/imageDibiao"
+        android:layout_toEndOf="@+id/imageDibiao"
+        android:text="宝通寺站"
+        android:paddingTop="5dp"/>
+
+    <com.example.codeplay.kuxing.util.LinedEditText
+        android:id="@+id/content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/location"
+        />
+
+
+</RelativeLayout>
