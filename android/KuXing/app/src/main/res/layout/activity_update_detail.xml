@@ -3,32 +3,28 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".Activity.DetailActivity">
-
+    android:layout_height="match_parent">
     <include
-        android:id="@+id/topbar"
-        layout="@layout/detail_topbar"
+        android:id="@+id/topbar1"
+        layout="@layout/detail_update_topbar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
     <ImageView
-        android:id="@+id/shadow"
+        android:id="@+id/shadow1"
         android:layout_width="match_parent"
         android:layout_height="5dp"
-        android:layout_below="@id/topbar"
+        android:layout_below="@id/topbar1"
         android:src="@drawable/shadow" />
-
     <include
-        android:id="@+id/detail"
         layout="@layout/detail"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
-        android:layout_below="@id/shadow"
+        android:layout_below="@id/shadow1"
         />
     <RadioGroup
-        android:id="@+id/bottom_detail"
+        android:id="@+id/bottom_insert"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
@@ -37,7 +33,7 @@
         android:layout_alignParentBottom="true"
         app:layout_constraintBottom_toBottomOf="parent">
         <RadioButton
-            android:id="@+id/share"
+            android:id="@+id/add_picture"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -45,18 +41,7 @@
             android:gravity="center"
             android:textColor="#FF000000"
             android:drawableTop="@mipmap/fenxiang"
-            android:text="@string/share" />
-        <RadioButton
-            android:id="@+id/delete"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:drawableTop="@mipmap/community"
-            android:button="@null"
-            android:gravity="center"
-            android:textColor="#FF000000"
-            android:text="@string/delete" />
+            android:text="@string/add_picture" />
     </RadioGroup>
-
 
 </RelativeLayout>
