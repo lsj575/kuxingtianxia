@@ -61,6 +61,18 @@ public class LauncherActivity extends AppCompatActivity implements ViewPager.OnP
     public void onPageScrolled(int i, float v, int i1) {
 
     }
+    @Override
+    protected void onResume() {
+        super.onResume();
+    }
+    @Override
+    protected void onPause() {
+        super.onPause();
+    }
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+    }
 
     @Override
     public void onPageSelected(int i) {
@@ -108,5 +120,6 @@ public class LauncherActivity extends AppCompatActivity implements ViewPager.OnP
         public int getCount() {
             return fragments.size();
         }
+
     }
 }

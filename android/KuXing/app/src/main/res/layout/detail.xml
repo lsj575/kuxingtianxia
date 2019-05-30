@@ -5,20 +5,20 @@
     android:layout_height="match_parent">
 
     <EditText
-        android:id="@+id/title"
+        android:id="@+id/biaoti"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="记事标题"
+        android:hint="记事标题"
         android:textSize="24sp" />
 
     <TextView
         android:id="@+id/date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/title"
+        android:layout_below="@id/biaoti"
         android:layout_alignParentStart="true"
         android:layout_marginStart="8dp"
         android:layout_marginTop="-5dp"
@@ -43,12 +43,24 @@
         android:text="宝通寺站"
         android:paddingTop="5dp"/>
 
-    <com.example.codeplay.kuxing.util.LinedEditText
-        android:id="@+id/content"
+    <EditText
+        android:id="@+id/neirong"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_below="@id/location"
+        android:gravity="top"
+        android:hint="文本内容"
+        android:lines="10"
+        android:background="@drawable/textview_border"
         />
+    <GridView
+        android:id="@+id/pictures"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:numColumns="3"
+        android:horizontalSpacing="5dp"
+        android:layout_below="@id/neirong"></GridView>
+
 
 
 </RelativeLayout>

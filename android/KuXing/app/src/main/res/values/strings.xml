@@ -9,4 +9,6 @@
     <string name="map">地图</string>
     <string name="community">动态</string>
     <string name="mine">我的</string>
+    <string name="update">修改记事</string>
+    <string name="add_picture">插入图片</string>
 </resources>
