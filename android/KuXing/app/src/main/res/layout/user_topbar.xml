@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/huitui"
+            android:layout_width="15dp"
+            android:layout_height="21dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="19dp"
+            android:layout_marginTop="10dp"
+            app:srcCompat="@mipmap/huitui" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="6dp"
+            android:layout_marginTop="0dp"
+            android:layout_toEndOf="@+id/huitui"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:text="@string/user"
+            android:textColor="@color/colorPrimary"
+            android:textSize="22sp" />
+
+    <Spinner
+        android:id="@+id/spinner2"
+        android:layout_width="78dp"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/huitui"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="306dp"
+        android:layout_marginBottom="0dp"
+        android:prompt="@string/setting"
+        android:entries="@array/spingarr"
+         />
+
+    <!--
+    <ImageView
+        android:id="@+id/xiala"
+        android:layout_width="15dp"
+        android:layout_height="21dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="349dp"
+        android:layout_marginTop="11dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:rotation="270"
+        app:srcCompat="@mipmap/huitui" />
+    -->
+
+
+    </RelativeLayout>
