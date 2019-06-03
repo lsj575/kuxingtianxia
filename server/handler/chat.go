@@ -117,7 +117,7 @@ func sendPrc(node *Node)  {
 
 func revPrc(node *Node)  {
 	for  {
-		_, data, err := node.Conn.ReadMessage()
+		_, _, err := node.Conn.ReadMessage()
 		if err != nil {
 			log.Println(err.Error())
 			return
