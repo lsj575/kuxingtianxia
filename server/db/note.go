@@ -76,8 +76,7 @@ func GetNote(username string) ([]Note, error) {
 	return notes, nil
 }
 
-func NoteEdit(id string, username string, content string, img string, latitude string, longitude string,
-	location string, isOpen string) bool {
+func NoteEdit(id string, username string, content string, img string, isOpen string) bool {
 	stmt, err := mydb.DBConn().Prepare(
 		"SELECT status FROM note WHERE username = ? && id = ?")
 	if err != nil {
@@ -94,13 +93,13 @@ func NoteEdit(id string, username string, content string, img string, latitude s
 	}
 
 	stmt, err = mydb.DBConn().Prepare(
-		"UPDATE note SET content = ?, img = ?, latitude = ?, longitude = ?, location = ?, isOpen = ? WHERE id = ?")
+		"UPDATE note SET content = ?, img = ?, isOpen = ? WHERE id = ?")
 	if err != nil {
 		fmt.Println(err.Error())
 		return false
 	}
 
-	_, err = stmt.Exec(content, img, latitude, longitude, location, isOpen, id)
+	_, err = stmt.Exec(content, img, isOpen, id)
 	if err != nil {
 		fmt.Println(err.Error())
 		return false
