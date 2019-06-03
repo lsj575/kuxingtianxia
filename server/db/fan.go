@@ -62,9 +62,9 @@ func GetFansNote(username string) ([]Note, error) {
 	var notes []Note
 
 	stmt, err := mydb.DBConn().Prepare(
-		"SELECT id, username, content, img, latitude, longitude, location, create_time, update_time" +
-			"FROM note AS n " +
-			"INNER JOIN fan AS f ON f.be_attention_username = n.username WHERE f.attention_username = ? && n.status = 1 && n.isOpen = 1")
+		"SELECT note.id, username, content, img, latitude, longitude, location, note.create_time, note.update_time " +
+			"FROM note " +
+			"INNER JOIN fan ON fan.be_attention_username = note.username WHERE fan.attention_username = ? && note.status = 1 && note.isOpen = 1")
 	if err != nil {
 		fmt.Println(err.Error())
 		return notes, err
@@ -78,7 +78,7 @@ func GetFansNote(username string) ([]Note, error) {
 
 	for rows.Next() {
 		note := Note{}
-		err = rows.Scan(&note.Id, &note.Content, &note.Img, &note.Latitude, &note.Longitude, &note.Location,
+		err = rows.Scan(&note.Id, &note.Username, &note.Content, &note.Img, &note.Latitude, &note.Longitude, &note.Location,
 			&note.CreateTime, &note.UpdateTime)
 		if err != nil {
 			fmt.Println(err.Error())

@@ -36,6 +36,7 @@ func NoteUpload(username string, content string, img string, latitude string, lo
 
 type Note struct {
 	Id int64
+	Username string
 	Content string
 	Img string
 	Latitude string
