@@ -3,19 +3,31 @@ package com.example.codeplay.kuxing.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 
+import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.AppCompatActivity;
 
+import android.util.Log;
+import android.view.View;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
-import com.baidu.mapapi.map.MapView;
 import com.example.codeplay.kuxing.Fragment.FragmentCommunity;
 import com.example.codeplay.kuxing.Fragment.FragmentMap;
 import com.example.codeplay.kuxing.Fragment.FragmentMy;
 import com.example.codeplay.kuxing.R;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 
 public class MainActivity extends AppCompatActivity implements RadioGroup.OnCheckedChangeListener{
 
@@ -26,8 +38,11 @@ public class MainActivity extends AppCompatActivity implements RadioGroup.OnChec
     private Fragment fg1;
     private Fragment fg2;
     private Fragment fg3;
-    private MapView mMapView = null;
 
+    private RadioButton radio0, radio1, radio2;
+    private Drawable map, trend, my;
+
+    private String res;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,39 +51,28 @@ public class MainActivity extends AppCompatActivity implements RadioGroup.OnChec
         fManager = getFragmentManager();
 
         //修改图标大小
-        RadioButton radio0 = (RadioButton)findViewById(R.id.radio0);
-        Drawable ditu = getResources().getDrawable(R.mipmap.ditu);
-        ditu.setBounds(0,0,50,50);
-        radio0.setCompoundDrawables(null,ditu,null,null);
-
-        RadioButton radio1 = (RadioButton)findViewById(R.id.radio1);
-        Drawable community = getResources().getDrawable(R.mipmap.community);
-        community.setBounds(0,0,50,50);
-        radio1.setCompoundDrawables(null,community,null,null);
-
-        RadioButton radio2 = (RadioButton)findViewById(R.id.radio2);
-        Drawable aixin = getResources().getDrawable(R.mipmap.aixin);
-        aixin.setBounds(0,0,50,50);
-        radio2.setCompoundDrawables(null,aixin,null,null);
+        radio0 = (RadioButton) findViewById(R.id.radio0);
+        map = getResources().getDrawable(R.mipmap.map_select);
+        map.setBounds(0,0,50,50);
+        radio0.setCompoundDrawables(null,map,null,null);
+        radio1 = (RadioButton) findViewById(R.id.radio1);
+        trend = getResources().getDrawable(R.mipmap.trend_unselect);
+        trend.setBounds(0,0,50,50);
+        radio1.setCompoundDrawables(null,trend,null,null);
+        radio2 = (RadioButton) findViewById(R.id.radio2);
+        my = getResources().getDrawable(R.mipmap.my_unselect);
+        my.setBounds(0,0,50,50);
+        radio2.setCompoundDrawables(null,my,null,null);
 
         bottom_bar = (RadioGroup) findViewById(R.id.bottom_bar);
         bottom_bar.setOnCheckedChangeListener(this);
         rb_map = (RadioButton)findViewById(R.id.radio0);
         rb_map.setChecked(true);
-        //获取地图控件引用
-        mMapView = (MapView)findViewById(R.id.bmapView);
     }
+
     @Override
-    protected void onResume() {
-        super.onResume();
-    }
-    @Override
-    protected void onPause() {
-        super.onPause();
-    }
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
+    public void onStart() {
+        super.onStart();
     }
 
     //隐藏所有Fragment
@@ -90,6 +94,18 @@ public class MainActivity extends AppCompatActivity implements RadioGroup.OnChec
                 }else{
                     fTransaction.show(fg1);
                 }
+                radio0.setTextColor(Color.parseColor("#FF53BFA2"));
+                map = getResources().getDrawable(R.mipmap.map_select);
+                map.setBounds(0,0,50,50);
+                radio0.setCompoundDrawables(null,map,null,null);
+                radio1.setTextColor(Color.parseColor("#FF000000"));
+                trend = getResources().getDrawable(R.mipmap.trend_unselect);
+                trend.setBounds(0,0,50,50);
+                radio1.setCompoundDrawables(null,trend,null,null);
+                radio2.setTextColor(Color.parseColor("#FF000000"));
+                my = getResources().getDrawable(R.mipmap.my_unselect);
+                my.setBounds(0,0,50,50);
+                radio2.setCompoundDrawables(null,my,null,null);
                 break;
             case R.id.radio1:
                 if(fg2 == null){
@@ -98,6 +114,18 @@ public class MainActivity extends AppCompatActivity implements RadioGroup.OnChec
                 }else{
                     fTransaction.show(fg2);
                 }
+                radio0.setTextColor(Color.parseColor("#FF000000"));
+                map = getResources().getDrawable(R.mipmap.map_unselect);
+                map.setBounds(0,0,50,50);
+                radio0.setCompoundDrawables(null,map,null,null);
+                radio1.setTextColor(Color.parseColor("#FF54BFA2"));
+                trend = getResources().getDrawable(R.mipmap.trend_select);
+                trend.setBounds(0,0,50,50);
+                radio1.setCompoundDrawables(null,trend,null,null);
+                radio2.setTextColor(Color.parseColor("#FF000000"));
+                my = getResources().getDrawable(R.mipmap.my_unselect);
+                my.setBounds(0,0,50,50);
+                radio2.setCompoundDrawables(null,my,null,null);
                 break;
             case R.id.radio2:
                 if(fg3 == null){
@@ -106,10 +134,23 @@ public class MainActivity extends AppCompatActivity implements RadioGroup.OnChec
                 }else{
                     fTransaction.show(fg3);
                 }
+                radio0.setTextColor(Color.parseColor("#FF000000"));
+                map = getResources().getDrawable(R.mipmap.map_unselect);
+                map.setBounds(0,0,50,50);
+                radio0.setCompoundDrawables(null,map,null,null);
+                radio1.setTextColor(Color.parseColor("#FF000000"));
+                trend = getResources().getDrawable(R.mipmap.trend_unselect);
+                trend.setBounds(0,0,50,50);
+                radio1.setCompoundDrawables(null,trend,null,null);
+                radio2.setTextColor(Color.parseColor("#FF53BFA2"));
+                my = getResources().getDrawable(R.mipmap.my_select);
+                my.setBounds(0,0,50,50);
+                radio2.setCompoundDrawables(null,my,null,null);
                 break;
             default:
                 break;
         }
         fTransaction.commit();
     }
+
 }
