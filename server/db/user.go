@@ -75,8 +75,11 @@ func UpdateToken(username string, token string) bool {
 }
 
 type User struct {
+	Id string
 	Username string
-	SignupAt string
+	Avatar string
+	Signature string
+	SignUpAt string
 	LastActiveAt string
 	Status int
 }
@@ -85,16 +88,67 @@ func GetUserInfo(username string) (User, error) {
 	user := User{}
 
 	stmt, err := mydb.DBConn().Prepare(
-		"SELECT username, create_time, last_login_time, status FROM user WHERE username = ? LIMIT 1")
+		"SELECT id, username, avatar, signature, create_time, last_login_time, status FROM user WHERE username = ? LIMIT 1")
 	if err != nil {
 		fmt.Println(err.Error())
 		return user, err
 	}
 	defer stmt.Close()
 
-	err = stmt.QueryRow(username).Scan(&user.Username, &user.SignupAt, &user.LastActiveAt, &user.Status)
+	err = stmt.QueryRow(username).Scan(&user.Id, &user.Username, &user.Avatar, &user.Signature, &user.SignUpAt, &user.LastActiveAt, &user.Status)
 	if err != nil {
 		return user, err
 	}
 	return user, nil
+}
+
+func ChangeAvatar(username string, avatar string) bool {
+	stmt, err := mydb.DBConn().Prepare(
+		"UPDATE user SET avatar = ? WHERE username = ?")
+	if err != nil {
+		fmt.Println(err.Error())
+		return false
+	}
+	defer stmt.Close()
+
+	_, err = stmt.Exec(avatar, username)
+	if err != nil {
+		fmt.Println(err.Error())
+		return false
+	}
+	return true
+}
+
+func ChangeUsername(username string, newName string) bool {
+	stmt, err := mydb.DBConn().Prepare(
+		"UPDATE user SET username = ? WHERE username = ?")
+	if err != nil {
+		fmt.Println(err.Error())
+		return false
+	}
+	defer stmt.Close()
+
+	_, err = stmt.Exec(newName, username)
+	if err != nil {
+		fmt.Println(err.Error())
+		return false
+	}
+	return true
+}
+
+func ChangeSignature(username string, signature string) bool {
+	stmt, err := mydb.DBConn().Prepare(
+		"UPDATE user SET signature = ? WHERE username = ?")
+	if err != nil {
+		fmt.Println(err.Error())
+		return false
+	}
+	defer stmt.Close()
+
+	_, err = stmt.Exec(signature, username)
+	if err != nil {
+		fmt.Println(err.Error())
+		return false
+	}
+	return true
 }
