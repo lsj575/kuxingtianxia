@@ -9,7 +9,7 @@ import (
 func AddFan(attentionUsername string, beAttentionUserName string) bool {
 	stmt, err := mydb.DBConn().Prepare(
 		"INSERT INTO fan (`attention_username`, `be_attention_username`, `create_time`) " +
-			"values (?, ?, ?, ?, ?, ?, ?, ?, ?)")
+			"values (?, ?, ?)")
 	if err != nil {
 		fmt.Println("Failed to insert, err: ", err)
 		return false
@@ -33,8 +33,8 @@ func GetFans(username string) ([]User, error) {
 	var users []User
 
 	stmt, err := mydb.DBConn().Prepare(
-		"SELECT u.id, username, avatar, signature, u.create_time, last_login_time FROM user AS u" +
-			"INNER JOIN fan AS f ON f.attention_username = u.username WHERE username = ? && status = 1")
+		"SELECT user.id, fan.be_attention_username, avatar, signature, user.create_time, last_login_time FROM user " +
+			"INNER JOIN fan ON fan.be_attention_username = user.username WHERE attention_username = ? && status = 1")
 	if err != nil {
 		fmt.Println(err.Error())
 		return users, err
