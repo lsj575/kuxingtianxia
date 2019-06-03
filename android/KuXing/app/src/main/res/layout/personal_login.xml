@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#98d1d2"
+    >
+    <include
+        layout="@layout/include_title"
+        />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+        <TextView
+            android:id="@+id/showView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="7dp"
+            android:gravity="center_horizontal"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:text="登录"
+            android:textSize="23sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <!--头像区域-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_marginTop="180dp"
+        >
+        <ImageView
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:gravity="center"
+            android:src="@mipmap/login"
+            />
+    </LinearLayout>
+
+    <!--用户名区域-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:layout_marginTop="270dp"
+        >
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:gravity="center"
+            android:src="@mipmap/yonghu"
+            />
+        <TextView
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:text="用户名"
+            android:textStyle="bold"
+            android:textSize="22sp" />
+    </LinearLayout>
+
+    <!--用户名输入栏区域-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:layout_marginTop="295dp"
+        >
+
+        <EditText
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:paddingLeft="10dp"
+            android:textSize="22sp"
+            android:ems="10"
+            android:hint="用户邮箱" />
+    </LinearLayout>
+
+
+
+    <!--密码区域-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:layout_marginTop="370dp"
+        >
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:gravity="center"
+            android:src="@mipmap/mima"
+            />
+        <TextView
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:text="密    码"
+            android:textStyle="bold"
+            android:textSize="22sp" />
+    </LinearLayout>
+
+    <!--密码输入区域-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:layout_marginTop="395dp"
+        >
+        <EditText
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:paddingLeft="10dp"
+            android:hint="用户密码"
+            android:ems="10"
+            android:textSize="22sp"
+            />
+    </LinearLayout>
+
+
+    <!--按钮区域-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_marginTop="520dp"
+        >
+        <Button
+            android:id="@+id/denlgu"
+            android:layout_width="98dp"
+            android:layout_height="40dp"
+            android:background="@drawable/bt_shape"
+            android:text="登  陆"
+            android:textColor="#2e647a"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+
+</RelativeLayout>

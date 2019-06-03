@@ -1,17 +1,19 @@
 package handler
 
-import "net/http"
+import (
+	"github.com/lsj575/kxtx/server/util"
+	"net/http"
+)
 
 // http请求拦截器
 func HTTPInterceptor(h http.HandlerFunc) http.HandlerFunc {
 	return http.HandlerFunc(
 		func(w http.ResponseWriter, r *http.Request) {
-			r.ParseForm()
-			username := r.Form.Get("username")
-			token := r.Form.Get("token")
+			username := r.FormValue("username")
+			token := r.FormValue("token")
 
 			if len(username) < 3 || !isTokenValid(token) {
-				w.WriteHeader(http.StatusForbidden)
+				w.Write(util.NewRespMsg(1, "Failed to get data", nil).JSONBytes())
 				return
 			}
 			h(w, r )

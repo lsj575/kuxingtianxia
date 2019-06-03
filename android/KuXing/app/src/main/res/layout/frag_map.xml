@@ -8,5 +8,16 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:clickable="true" />
+    <include
+        layout="@layout/map_topbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <FrameLayout
+        android:id="@+id/map_place"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#ffffff"
+        android:layout_alignParentBottom="true">
+    </FrameLayout>
 
 </RelativeLayout>

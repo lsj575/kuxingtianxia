@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="5dp">
+    <!--android:descendantFocusability="blocksDescendants">-->
+
+    <ImageButton
+        android:id="@+id/touxiang"
+        android:layout_width="47dp"
+        android:layout_height="42dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="14dp"
+        android:layout_marginTop="14dp"
+        android:scaleType="fitXY"
+        android:background="@android:color/transparent"
+        app:srcCompat="@mipmap/test" />
+
+    <TextView
+        android:id="@+id/friendname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/touxiang"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="76dp"
+        android:text="Stephen"
+        android:textAllCaps="false" />
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="14dp"
+        android:layout_height="19dp"
+        android:layout_below="@+id/friendname"
+        android:layout_alignStart="@+id/friendname"
+        android:layout_marginStart="-1dp"
+        android:layout_marginTop="5dp"
+        app:srcCompat="@mipmap/dibiao" />
+
+    <TextView
+        android:id="@+id/location1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/imageView4"
+        android:layout_toEndOf="@+id/imageView4"
+        android:text="宝通寺站" />
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/viewpager2"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:layout_below="@id/touxiang">
+    </android.support.v4.view.ViewPager>
+
+    <TextView
+        android:id="@+id/neirong2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/viewpager2"
+        android:text="hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"/>
+
+    <TextView
+        android:id="@+id/date2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/neirong2"
+        android:layout_alignStart="@+id/viewpager2"
+        android:text="2019/05/28 15:30"
+        android:layout_marginLeft="20dp"/>
+
+    <ImageButton
+        android:id="@+id/zhuanfa"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_below="@+id/neirong2"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="0dp"
+        android:layout_marginEnd="19dp"
+        android:background="@android:color/transparent"
+        android:scaleType="fitXY"
+        android:src="@mipmap/fenxiang" />
+
+
+</RelativeLayout>
