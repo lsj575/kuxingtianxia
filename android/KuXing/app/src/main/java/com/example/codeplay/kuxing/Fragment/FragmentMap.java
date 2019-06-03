@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.BottomSheetDialog;
 import android.util.DisplayMetrics;
@@ -33,6 +34,8 @@ import com.baidu.mapapi.map.MapView;
 import com.baidu.mapapi.map.MyLocationData;
 import com.baidu.mapapi.map.Text;
 import com.baidu.mapapi.model.LatLng;
+import com.example.codeplay.kuxing.Activity.InsertDetailActivity;
+import com.example.codeplay.kuxing.Activity.MainActivity;
 import com.example.codeplay.kuxing.R;
 
 public class FragmentMap extends Fragment implements View.OnClickListener {
@@ -82,8 +85,9 @@ public class FragmentMap extends Fragment implements View.OnClickListener {
         btn_add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                bottom_bar.setVisibility(View.GONE);
-                fm.beginTransaction().replace(R.id.map_place, new FragmentPlace()).commit();
+                Intent intent = new Intent();
+                intent.setClass(getActivity(), InsertDetailActivity.class);
+                startActivity(intent);
             }
         });
         search_text = (TextView) this.getView().findViewById(R.id.search_text);

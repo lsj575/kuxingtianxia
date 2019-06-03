@@ -3,7 +3,8 @@
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="wrap_content"
     android:layout_height="40dp"
     android:scrollbars="none"
-    android:id="@+id/eventlist_hsv">
+    android:id="@+id/eventlist_hsv"
+    android:descendantFocusability="blocksDescendants">
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
