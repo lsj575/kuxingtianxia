@@ -11,4 +11,11 @@
     <string name="mine">我的</string>
     <string name="update">修改记事</string>
     <string name="add_picture">插入图片</string>
+    <string name="user">用户主页</string>
+    <string name="user_name">用户名</string>
+    <string name="signature">个性签名</string>
+    <string name="noteNum">动态数</string>
+    <string name="friendNum">好友数</string>
+    <string name="followerNum">粉丝数</string>
+    <string name="setting">设置</string>
 </resources>
