@@ -22,8 +22,8 @@
             android:layout_weight="1"
             android:button="@null"
             android:gravity="center"
-            android:textColor="#FF000000"
-            android:drawableTop="@mipmap/ditu"
+            android:textColor="#FF53BFA2"
+            android:drawableTop="@mipmap/map_select"
             android:text="@string/map" />
 
         <RadioButton
@@ -31,7 +31,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:drawableTop="@mipmap/community"
+            android:drawableTop="@mipmap/trend_unselect"
             android:button="@null"
             android:gravity="center"
             android:textColor="#FF000000"
@@ -44,7 +44,7 @@
             android:layout_weight="1"
             android:button="@null"
             android:textColor="#FF000000"
-            android:drawableTop="@mipmap/aixin"
+            android:drawableTop="@mipmap/my_unselect"
             android:gravity="center"
             android:text="@string/mine" />
 
@@ -56,7 +56,5 @@
         android:layout_height="match_parent"
         android:layout_above="@+id/bottom_bar">
     </FrameLayout>
-
-
 
 </RelativeLayout>

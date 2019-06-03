@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#98d1d2"
+    >
+    <include
+        layout="@layout/include_title"
+        />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+        <TextView
+            android:id="@+id/showView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="7dp"
+            android:gravity="center_horizontal"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:text="编辑个人信息"
+            android:textSize="23sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+    <!--修改用户名-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#ffffff"
+        android:layout_marginTop="56dp"
+        android:orientation="horizontal"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="4dp"
+            android:text="修改用户名"
+            android:textSize="23sp" />
+
+        <EditText
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginTop="4dp"
+            android:layout_marginLeft="23dp"
+            android:hint="输入新用户名"
+            android:background="@null"
+            android:textSize="23sp"
+            />
+        <Button
+            android:id="@+id/saveN"
+            android:layout_width="60dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/bt_shape"
+            android:text="保存"
+            android:textColor="#2e647a"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+    <!--修改头像-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
+        android:background="#ffffff"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="4dp"
+            android:gravity="center_horizontal"
+            android:text="修改头像"
+            android:textSize="23sp"
+            android:layout_gravity="center"/>
+
+        <ImageView
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_weight="1"
+            android:layout_marginTop="5dp"
+            android:gravity="right"
+            android:src="@mipmap/login"
+            />
+        <Button
+            android:id="@+id/choose"
+            android:layout_width="60dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="34dp"
+            android:background="@drawable/bt_shape"
+            android:text="选择"
+            android:textColor="#2e647a"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+
+    </LinearLayout>
+
+    <!--修改签名-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#ffffff"
+        android:layout_marginTop="190dp"
+        android:orientation="horizontal"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="4dp"
+            android:gravity="center_horizontal"
+            android:text="修改个人签名"
+            android:textSize="23sp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="4dp"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
+            android:text="  "
+            android:textSize="23sp" />
+        <Button
+            android:id="@+id/saveW"
+            android:layout_width="60dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/bt_shape"
+            android:text="保存"
+            android:textColor="#2e647a"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#ffffff"
+        android:layout_marginTop="230dp"
+        >
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="30dp"
+            android:hint="输入新签名"
+            android:gravity="start"
+            android:background="@null"
+            android:textSize="23sp"
+            />
+    </LinearLayout>
+
+</RelativeLayout>
