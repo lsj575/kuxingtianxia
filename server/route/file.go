@@ -1,5 +1,10 @@
-package main
+package route
 
-func main() {
-	$END$
+import (
+	"github.com/lsj575/kxtx/server/handler"
+	"net/http"
+)
+
+func FileHandlerFunc() {
+	http.HandleFunc("/img/upload", handler.HTTPInterceptor(handler.ImgUploadHandler))
 }
