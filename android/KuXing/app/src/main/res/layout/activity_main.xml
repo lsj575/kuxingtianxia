@@ -46,7 +46,7 @@
             android:textColor="#FF000000"
             android:drawableTop="@mipmap/my_unselect"
             android:gravity="center"
-            android:text="@string/mine" />
+            android:text="我的" />
 
     </RadioGroup>
     

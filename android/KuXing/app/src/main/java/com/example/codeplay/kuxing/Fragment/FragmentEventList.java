@@ -29,6 +29,10 @@ import com.example.codeplay.kuxing.R;
 
 import org.w3c.dom.Text;
 
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+
 public class FragmentEventList extends Fragment {
 
     private android.app.FragmentManager fm;
@@ -37,8 +41,10 @@ public class FragmentEventList extends Fragment {
     private ImageView btn_close;
     private RadioGroup buttom_bar;
     private DisplayMetrics displayMetrics;
-    private String[] group_name = { "test" };
-    private String[][] items = { { "寒冰射手", "冰晶凤凰", "符文法师", "诺克萨斯之手", "魔蛇之拥", "狂暴之心", "战争之王", "德邦总管", "诺克萨斯统领", "正义巨像", "德玛西亚皇子", "无双剑姬", "放逐之刃", "唤潮鲛姬" } };
+    private ArrayList<String> groups = new ArrayList<String>();
+    private ArrayList<ArrayList<String>> items = new ArrayList<ArrayList<String>>();
+//    private String[] group_name = { "test" };
+//    private String[][] items = { { "寒冰射手", "冰晶凤凰", "符文法师", "诺克萨斯之手", "魔蛇之拥", "狂暴之心", "战争之王", "德邦总管", "诺克萨斯统领", "正义巨像", "德玛西亚皇子", "无双剑姬", "放逐之刃", "唤潮鲛姬" } };
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -49,12 +55,18 @@ public class FragmentEventList extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
+        groups.add("LOL");
+        ArrayList<String> group0 = new ArrayList<String>();
+        group0.add("寒冰射手");
+        group0.add("冰晶凤凰");
+        group0.add("符文法师");
+        items.add(0, group0);
         fm = getActivity().getFragmentManager();
         mContext = getActivity();
         displayMetrics = new DisplayMetrics();
         getActivity().getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
         expandableListView = (ExpandableListView) getActivity().findViewById(R.id.eventlist);
-        expandableListView.setAdapter(new EventlistAdapter(group_name, items, mContext, displayMetrics.widthPixels));
+        expandableListView.setAdapter(new EventlistAdapter(groups, items, mContext, displayMetrics.widthPixels));
         btn_close = (ImageView) getActivity().findViewById(R.id.eventlist_close);
         buttom_bar = (RadioGroup) getActivity().findViewById(R.id.bottom_bar);
         btn_close.setOnClickListener(new View.OnClickListener() {
@@ -68,12 +80,12 @@ public class FragmentEventList extends Fragment {
 
     class EventlistAdapter extends BaseExpandableListAdapter {
 
-        private String[] gData;
-        private String[][] iData;
+        private ArrayList<String> gData;
+        private ArrayList<ArrayList<String>> iData;
         private Context mContext;
         private int screenWidth;
 
-        public EventlistAdapter(String[] gData, String[][] iData, Context mContext, int screenWidth) {
+        public EventlistAdapter(ArrayList<String> gData, ArrayList<ArrayList<String>> iData, Context mContext, int screenWidth) {
             this.gData = gData;
             this.iData = iData;
             this.mContext = mContext;
@@ -82,22 +94,22 @@ public class FragmentEventList extends Fragment {
 
         @Override
         public int getGroupCount() {
-            return gData.length;
+            return gData.size();
         }
 
         @Override
         public int getChildrenCount(int i) {
-            return iData[i].length;
+            return iData.get(i).size();
         }
 
         @Override
         public Object getGroup(int i) {
-            return gData[i];
+            return gData.size();
         }
 
         @Override
         public Object getChild(int i, int i1) {
-            return iData[i][i1];
+            return iData.get(i).get(i1);
         }
 
         @Override
@@ -126,13 +138,15 @@ public class FragmentEventList extends Fragment {
             } else {
                 groupHolder = (ViewHolderGroup) convertView.getTag();
             }
-            groupHolder.group_name.setText(gData[i]);
+            groupHolder.group_name.setText(gData.get(i));
             return convertView;
         }
 
         @Override
-        public View getChildView(int i, int i1, boolean b, View convertView, ViewGroup viewGroup) {
+        public View getChildView(int i, final int i1, boolean b, View convertView, ViewGroup viewGroup) {
             ViewHolderItem itemHolder;
+            final int group_index = i;
+            final int item_index = i1;
             if (convertView == null) {
                 convertView = LayoutInflater.from(mContext).inflate(R.layout.eventlist_item, viewGroup, false);
                 itemHolder = new ViewHolderItem();
@@ -144,11 +158,20 @@ public class FragmentEventList extends Fragment {
                 itemHolder.delete = (ImageView) convertView.findViewById(R.id.eventlist_item_delete);
                 ViewGroup.LayoutParams layoutParams = itemHolder.content.getLayoutParams();
                 layoutParams.width = screenWidth;
+                itemHolder.delete.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        items.get(group_index).remove(item_index);
+                        EventlistAdapter.this.notifyDataSetChanged();
+                        Log.i("group index", String.valueOf(group_index));
+                        Log.i("item index", String.valueOf(item_index));
+                    }
+                });
                 convertView.setTag(itemHolder);
             } else {
                 itemHolder = (ViewHolderItem) convertView.getTag();
             }
-            itemHolder.item.setText(iData[i][i1]);
+            itemHolder.item.setText(iData.get(i).get(i1));
             return convertView;
         }
 
