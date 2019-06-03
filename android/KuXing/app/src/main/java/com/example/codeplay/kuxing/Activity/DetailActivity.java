@@ -1,5 +1,8 @@
 package com.example.codeplay.kuxing.Activity;
 
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.support.v7.app.AppCompatActivity;
@@ -20,6 +23,9 @@ public class DetailActivity extends AppCompatActivity implements RadioGroup.OnCh
     private RadioGroup radioGroup;
     private EditText title;
     private EditText content;
+    private AlertDialog alert = null;
+    private AlertDialog.Builder builder = null;
+    private Context mContext;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,6 +67,8 @@ public class DetailActivity extends AppCompatActivity implements RadioGroup.OnCh
 
         radioGroup = (RadioGroup) findViewById(R.id.bottom_detail);
         radioGroup.setOnCheckedChangeListener(this);
+
+        mContext = DetailActivity.this;
     }
     @Override
     protected void onResume() {
@@ -83,6 +91,29 @@ public class DetailActivity extends AppCompatActivity implements RadioGroup.OnCh
                 break;
             case R.id.delete:
                 //响应函数
+                alert = null;
+                builder = new AlertDialog.Builder(mContext);
+                alert = builder.setTitle("提示")
+                        .setMessage("确定删除吗？")
+                        .setNegativeButton("确定", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                /**
+                                 *
+                                 */
+                                Toast.makeText(mContext, "确定", Toast.LENGTH_SHORT).show();
+                            }
+                        })
+                        .setPositiveButton("取消", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                /**
+                                 *
+                                 */
+                                Toast.makeText(mContext, "取消", Toast.LENGTH_SHORT).show();
+                            }
+                        }).create();
+                alert.show();
                 break;
             default:
                 break;
