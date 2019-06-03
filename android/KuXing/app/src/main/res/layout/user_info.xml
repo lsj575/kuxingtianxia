@@ -6,14 +6,13 @@
         android:layout_height="match_parent">
 
 
-
-        <ImageView
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="50dp"
-            android:outlineAmbientShadowColor="@color/colorPrimary"
-            tools:srcCompat="@tools:sample/avatars" />
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"
+        android:outlineAmbientShadowColor="@color/colorPrimary"
+        tools:srcCompat="@tools:sample/avatars" />
 
         <TextView
             android:id="@+id/textView6"
@@ -34,17 +33,18 @@
             android:text="@string/signature"
             android:textSize="16sp"/>
 
-        <TableLayout
-            android:layout_width="357dp"
-            android:layout_height="70dp"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginEnd="-213dp"
-            android:layout_marginBottom="250dp"
-            android:layout_toStartOf="@+id/textView6"
-            android:shrinkColumns="0,1,2">
+    <TableLayout
+        android:layout_width="357dp"
+        android:layout_height="70dp"
+        android:layout_alignParentTop="true"
 
-            <TableRow>
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="255dp"
+        android:layout_marginEnd="-213dp"
+        android:layout_toStartOf="@+id/textView6"
+        android:shrinkColumns="0,1,2">
+
+        <TableRow>
 
             <TextView
                 android:id="@+id/textNumChar"
@@ -75,7 +75,7 @@
                 android:textSize="20sp" />
         </TableRow>
 
-            <TableRow>
+        <TableRow>
 
             <TextView
                 android:id="@+id/textNum"
@@ -107,7 +107,17 @@
         </TableRow>
 
 
-        </TableLayout>
+    </TableLayout>
+
+    <ImageButton
+        android:id="@+id/imageButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/textView5"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="92dp"
+        android:layout_marginBottom="-207dp"
+        app:srcCompat="@mipmap/outbox" />
 
 
-    </RelativeLayout>
+</RelativeLayout>

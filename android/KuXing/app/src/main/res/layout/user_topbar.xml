@@ -28,32 +28,23 @@
             android:textColor="@color/colorPrimary"
             android:textSize="22sp" />
 
+        <include
+            android:id="@+id/list"
+            layout="@layout/user_list"
+             />
+<!--
     <Spinner
         android:id="@+id/spinner2"
-        android:layout_width="78dp"
+        android:layout_width="55dp"
         android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/textView"
         android:layout_alignBottom="@+id/huitui"
-        android:layout_alignParentStart="true"
-        android:layout_marginStart="306dp"
-        android:layout_marginBottom="0dp"
-        android:prompt="@string/setting"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="-1dp"
+
         android:entries="@array/spingarr"
-         />
-
-    <!--
-    <ImageView
-        android:id="@+id/xiala"
-        android:layout_width="15dp"
-        android:layout_height="21dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="349dp"
-        android:layout_marginTop="11dp"
-        android:clickable="true"
-        android:focusable="true"
-        android:rotation="270"
-        app:srcCompat="@mipmap/huitui" />
-    -->
+        android:prompt="@string/setting" />
+-->
 
 
-    </RelativeLayout>
+</RelativeLayout>
