@@ -9,8 +9,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
+import android.widget.GridView;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -84,12 +86,12 @@ public class CommunityAdapter extends BaseExpandableListAdapter implements ViewP
 
     @Override
     public View getChildView(int groupPosition, int childPosition, boolean isLastChild, View convertView, ViewGroup parent) {
-        ViewPager viewPager;
-        ArrayList<Fragment> fragments;
-        PictureLauncherAdapter pictureLauncherAdapter;
+        GridView gridView;
+        PictureAdapter pictureAdapter;
+        ArrayList<Integer> mdata;
         ImageButton imageButton;
         convertView = LayoutInflater.from(mContext).inflate(R.layout.community_group_item, parent, false);
-        viewPager = convertView.findViewById(R.id.viewpager2);
+        gridView = convertView.findViewById(R.id.pictures2);
         imageButton = convertView.findViewById(R.id.touxiang);
         imageButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -100,17 +102,15 @@ public class CommunityAdapter extends BaseExpandableListAdapter implements ViewP
                  */
             }
         });
-        Log.i("xxx","111");
-        fragments = new ArrayList<Fragment>();
-        fragments.add(new PictureFragment());
-        fragments.add(new PictureFragment());
-        fragments.add(new PictureFragment());
-        fragments.add(new PictureFragment());
-
-        pictureLauncherAdapter = new PictureLauncherAdapter(((MainActivity)mContext).getSupportFragmentManager(), fragments);
-        viewPager.setAdapter(pictureLauncherAdapter);
-        //初始化显示第一个页面
-        viewPager.setCurrentItem(0);
+        mdata = new ArrayList<Integer>();
+        /**
+         * 需要显示的图片
+         */
+        mdata.add(1);
+        mdata.add(1);
+        mdata.add(1);
+        pictureAdapter = new PictureAdapter(mdata,mContext);
+        gridView.setAdapter(pictureAdapter);
         return convertView;
     }
 

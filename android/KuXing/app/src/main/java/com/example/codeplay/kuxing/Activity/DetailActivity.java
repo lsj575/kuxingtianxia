@@ -11,11 +11,15 @@ import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 
+import android.widget.GridView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
+import com.example.codeplay.kuxing.Adapter.PictureAdapter;
 import com.example.codeplay.kuxing.R;
+
+import java.util.ArrayList;
 
 
 public class DetailActivity extends AppCompatActivity implements RadioGroup.OnCheckedChangeListener{
@@ -26,6 +30,8 @@ public class DetailActivity extends AppCompatActivity implements RadioGroup.OnCh
     private AlertDialog alert = null;
     private AlertDialog.Builder builder = null;
     private Context mContext;
+    private PictureAdapter pictureAdapter;
+    private ArrayList<Integer> mdata = new ArrayList<Integer>();           //图片存放，将Integer改为图片类型
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -69,6 +75,16 @@ public class DetailActivity extends AppCompatActivity implements RadioGroup.OnCh
         radioGroup.setOnCheckedChangeListener(this);
 
         mContext = DetailActivity.this;
+
+        GridView icon_gridview = (GridView)findViewById(R.id.pictures);
+        /**
+         * 需要显示的图片
+         */
+        mdata.add(1);
+        mdata.add(1);
+        mdata.add(1);
+        pictureAdapter = new PictureAdapter(mdata,mContext);
+        icon_gridview.setAdapter(pictureAdapter);
     }
     @Override
     protected void onResume() {

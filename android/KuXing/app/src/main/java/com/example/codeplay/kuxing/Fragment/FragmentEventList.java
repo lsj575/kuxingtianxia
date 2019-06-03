@@ -2,6 +2,7 @@ package com.example.codeplay.kuxing.Fragment;
 
 import android.app.Fragment;
 import android.content.Context;
+import android.content.Intent;
 import android.media.Image;
 import android.os.Build;
 import android.os.Bundle;
@@ -23,7 +24,9 @@ import android.widget.ListView;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.support.v4.app.FragmentManager;
+import android.widget.Toast;
 
+import com.example.codeplay.kuxing.Activity.DetailActivity;
 import com.example.codeplay.kuxing.Activity.MainActivity;
 import com.example.codeplay.kuxing.R;
 
@@ -64,6 +67,7 @@ public class FragmentEventList extends Fragment {
                 fm.beginTransaction().replace(R.id.layout_content, new FragmentMap()).commit();
             }
         });
+
     }
 
     class EventlistAdapter extends BaseExpandableListAdapter {
@@ -144,6 +148,14 @@ public class FragmentEventList extends Fragment {
                 itemHolder.delete = (ImageView) convertView.findViewById(R.id.eventlist_item_delete);
                 ViewGroup.LayoutParams layoutParams = itemHolder.content.getLayoutParams();
                 layoutParams.width = screenWidth;
+                itemHolder.item.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent();
+                        intent.setClass(getActivity(), DetailActivity.class);
+                        startActivity(intent);
+                    }
+                });
                 convertView.setTag(itemHolder);
             } else {
                 itemHolder = (ViewHolderItem) convertView.getTag();
