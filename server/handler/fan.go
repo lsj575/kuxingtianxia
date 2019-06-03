@@ -40,7 +40,7 @@ func GetFansHandler(w http.ResponseWriter, r *http.Request)  {
 }
 
 func GetFansNote(w http.ResponseWriter, r *http.Request)  {
-	username := r.FormValue("username")
+	//username := r.FormValue("username")
 
-	notes, err := mylayer.GetFansNote(username)
+	//notes, err := mylayer.GetFansNote(username)
 }
