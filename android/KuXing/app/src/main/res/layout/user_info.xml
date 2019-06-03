@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"
+        android:outlineAmbientShadowColor="@color/colorPrimary"
+        tools:srcCompat="@tools:sample/avatars" />
+
+        <TextView
+            android:id="@+id/textView6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="167dp"
+            android:text="@string/user_name"
+            android:textSize="23sp"/>
+        <TextView
+            android:id="@+id/textView5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="207dp"
+            android:text="@string/signature"
+            android:textSize="16sp"/>
+
+    <TableLayout
+        android:layout_width="357dp"
+        android:layout_height="70dp"
+        android:layout_alignParentTop="true"
+
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="255dp"
+        android:layout_marginEnd="-213dp"
+        android:layout_toStartOf="@+id/textView6"
+        android:shrinkColumns="0,1,2">
+
+        <TableRow>
+
+            <TextView
+                android:id="@+id/textNumChar"
+                android:layout_width="120dp"
+                android:layout_height="35dp"
+
+                android:clickable="true"
+                android:text="@string/noteNum"
+                android:textAlignment="center"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/friendNumChar"
+                android:layout_width="120dp"
+                android:layout_height="35dp"
+
+                android:text="@string/friendNum"
+                android:textAlignment="center"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/followerNumChar"
+                android:layout_width="120dp"
+                android:layout_height="35dp"
+
+                android:text="@string/followerNum"
+                android:textAlignment="center"
+                android:textSize="20sp" />
+        </TableRow>
+
+        <TableRow>
+
+            <TextView
+                android:id="@+id/textNum"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+
+
+                android:text="66"
+                android:textAlignment="center"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/friendNum"
+                android:layout_width="118dp"
+                android:layout_height="match_parent"
+
+                android:text="33"
+                android:textAlignment="center"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/followerNum"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:text="99"
+                android:textAlignment="center"
+                android:textSize="20sp" />
+        </TableRow>
+
+
+    </TableLayout>
+
+    <ImageButton
+        android:id="@+id/imageButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/textView5"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="92dp"
+        android:layout_marginBottom="-207dp"
+        app:srcCompat="@mipmap/outbox" />
+
+
+</RelativeLayout>
