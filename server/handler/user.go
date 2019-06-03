@@ -56,7 +56,7 @@ func SignInHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	// 登录成功后重定向到首页
+	// 登录成功
 	resp := util.RespMsg{
 		Code: 0,
 		Msg:  "OK",
@@ -78,17 +78,47 @@ func GenToken(username string) string {
 	return tokenPrefix + ts[:8]
 }
 
+func ChangeUserAvatarHandler(w http.ResponseWriter, r *http.Request)  {
+	username := r.FormValue("username")
+	avatar := r.FormValue("avatar")
+
+	changeAvatar := mylayer.ChangeAvatar(username, avatar)
+	if !changeAvatar {
+		w.Write(util.NewRespMsg(1, "FAILED", nil).JSONBytes())
+		return
+	}
+	w.Write(util.NewRespMsg(0, "SUCCESS", nil).JSONBytes())
+}
+
+func ChangeUsernameHandler(w http.ResponseWriter, r *http.Request)  {
+	username := r.FormValue("username")
+	newName := r.FormValue("new_name")
+
+	changeUsername := mylayer.ChangeUsername(username, newName)
+	if !changeUsername {
+		w.Write(util.NewRespMsg(1, "FAILED", nil).JSONBytes())
+		return
+	}
+	w.Write(util.NewRespMsg(0, "SUCCESS", nil).JSONBytes())
+}
+
+func ChangeUserSignature(w http.ResponseWriter, r *http.Request)  {
+	username := r.FormValue("username")
+	signature := r.FormValue("signature")
+
+	changeSignature := mylayer.ChangeSignature(username, signature)
+	if !changeSignature {
+		w.Write(util.NewRespMsg(1, "FAILED", nil).JSONBytes())
+		return
+	}
+	w.Write(util.NewRespMsg(0, "SUCCESS", nil).JSONBytes())
+}
+
 func UserInfoHandler(w http.ResponseWriter, r *http.Request)  {
 	// 解析请求参数
 	r.ParseForm()
 	username :=r.Form.Get("username")
-	//token := r.Form.Get("token")
-	// 验证token是否有效
-	//isValidToken := isTokenValid(token)
-	//if !isValidToken {
-	//	w.WriteHeader(http.StatusForbidden)
-	//	return
-	//}
+
 	// 查询用户信息
 	user, err := mylayer.GetUserInfo(username)
 	if err != nil {
