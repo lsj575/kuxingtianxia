@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    android:background="#98d1d2">
+
+    <!--文字区域-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_marginTop="250dp"
+        >
+        <TextView
+            android:id="@+id/helloView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="~~酷行天下~~"
+            android:textSize="25sp"
+            android:textColor="#ffffff"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_marginTop="350dp"
+        >
+        <Button
+            android:id="@+id/login"
+            android:layout_width="98dp"
+            android:layout_height="40dp"
+            android:background="@drawable/bt_shape"
+            android:text="登  陆"
+            android:textColor="#2e647a"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_marginTop="450dp"
+        >
+        <Button
+            android:id="@+id/register"
+            android:layout_width="98dp"
+            android:layout_height="40dp"
+            android:background="@drawable/bt_shape"
+            android:text="注  册"
+            android:textColor="#2e647a"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_marginTop="550dp"
+        >
+        <Button
+            android:id="@+id/changinfo"
+            android:layout_width="200dp"
+            android:layout_height="40dp"
+            android:background="@drawable/bt_shape"
+            android:text="修改个人信息"
+            android:textColor="#2e647a"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_marginTop="600dp"
+        >
+        <Button
+            android:id="@+id/friend"
+            android:layout_width="200dp"
+            android:layout_height="40dp"
+            android:background="@drawable/bt_shape"
+            android:text="好友列表"
+            android:textColor="#2e647a"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_marginTop="650dp"
+        >
+        <Button
+            android:id="@+id/fans"
+            android:layout_width="200dp"
+            android:layout_height="40dp"
+            android:background="@drawable/bt_shape"
+            android:text="粉丝列表"
+            android:textColor="#2e647a"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+</RelativeLayout>
