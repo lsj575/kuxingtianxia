@@ -13,18 +13,17 @@
         <include
             android:id="@+id/info"
             layout="@layout/user_info"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true" />
 
-        <include
-            android:id="@+id/notepublic"
-            layout="@layout/user_notepublic"
-            android:layout_width="match_parent"
-            android:layout_height="247dp"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginStart="0dp"
-            android:layout_marginBottom="1dp" />
+        <ListView
+            android:id="@+id/user_community"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/info"
+            android:childDivider="#9E9E9E"></ListView>
 
 
     </RelativeLayout>

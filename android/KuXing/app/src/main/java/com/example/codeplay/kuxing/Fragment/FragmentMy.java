@@ -13,14 +13,12 @@ import com.example.codeplay.kuxing.Activity.FanActivity;
 import com.example.codeplay.kuxing.Activity.FrienActivity;
 import com.example.codeplay.kuxing.Activity.LoginActivity;
 import com.example.codeplay.kuxing.Activity.RegisterActivity;
+import com.example.codeplay.kuxing.Activity.UserActivity;
 import com.example.codeplay.kuxing.R;
 
 
 public class FragmentMy extends Fragment  {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-<<<<<<< HEAD
-        View view=inflater.inflate(R.layout.activity_user,container,false);
-=======
         View view=inflater.inflate(R.layout.personal_main,container,false);
         Button buttonL = view.findViewById(R.id.login);
         buttonL.setOnClickListener(new View.OnClickListener() {
@@ -62,7 +60,6 @@ public class FragmentMy extends Fragment  {
                 startActivity(intent);
             }
         });
->>>>>>> 8050f8802595dc1a31c35f7c4367c39f8c73cc52
         return view;
     }
 }

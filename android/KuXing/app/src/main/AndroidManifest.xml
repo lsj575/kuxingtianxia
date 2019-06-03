@@ -57,6 +57,7 @@
         <activity android:name=".Activity.FanActivity"/>
         <activity android:name=".Activity.UpdateDetailActivity" />
         <activity android:name=".Activity.InsertDetailActivity"/>
+        <activity android:name=".Activity.UserActivity"/>
     </application>
 
 </manifest>

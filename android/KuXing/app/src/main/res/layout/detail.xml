@@ -53,13 +53,17 @@
         android:lines="10"
         android:background="@drawable/textview_border"
         />
+
     <GridView
         android:id="@+id/pictures"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:numColumns="3"
+        android:layout_below="@id/neirong"
+        android:layout_marginTop="3dp"
         android:horizontalSpacing="5dp"
-        android:layout_below="@id/neirong"></GridView>
+        android:numColumns="3"
+        android:paddingTop="10dp"
+        android:verticalSpacing="5dp"></GridView>
 
 
 
