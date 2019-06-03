@@ -16,6 +16,6 @@ func HTTPInterceptor(h http.HandlerFunc) http.HandlerFunc {
 				w.Write(util.NewRespMsg(1, "Failed to get data", nil).JSONBytes())
 				return
 			}
-			h(w, r )
+			h(w, r)
 		})
 }
