@@ -138,9 +138,9 @@ func NoteDelete(id string, username string) bool {
 	return true
 }
 
-func GetUserNoteNumber(id string) (int64, error) {
+func GetUserNoteNumber(username string) (int64, error) {
 	stmt, err := mydb.DBConn().Prepare(
-		"SELECT count(*) FROM note WHERE id = ? && status = 1")
+		"SELECT count(*) FROM note WHERE username = ? && status = 1")
 	if err != nil {
 		fmt.Println(err.Error())
 		return 0, err
@@ -148,7 +148,7 @@ func GetUserNoteNumber(id string) (int64, error) {
 	defer stmt.Close()
 
 	var num int64
-	err = stmt.QueryRow(id).Scan(&num)
+	err = stmt.QueryRow(username).Scan(&num)
 	if err != nil {
 		return 0, err
 	}

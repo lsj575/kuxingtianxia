@@ -83,9 +83,9 @@ func NoteDeleteHandler(w http.ResponseWriter, r *http.Request)  {
 }
 
 func GetUserNoteNumberHandler(w http.ResponseWriter, r *http.Request) {
-	id := r.FormValue("id")
+	username := r.FormValue("username")
 
-	number, err := mylayer.GetUserNoteNumber(id)
+	number, err := mylayer.GetUserNoteNumber(username)
 	if err != nil {
 		w.Write(util.NewRespMsg(1, "FAILED", nil).JSONBytes())
 		return
