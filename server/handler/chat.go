@@ -76,11 +76,11 @@ func ChatHandler(w http.ResponseWriter, r *http.Request)  {
 	userId, _ := strconv.ParseInt(id, 10, 64)
 	valid := isTokenValid(token)
 
-	conn, err := websocket.Upgrader{
+	conn, err := (&websocket.Upgrader{
 		CheckOrigin: func(r *http.Request) bool {
 			return valid
 		},
-	}.Upgrade(w, r, nil)
+	}).Upgrade(w, r, nil)
 	if err != nil {
 		fmt.Println("error:", err)
 		return
@@ -117,7 +117,7 @@ func sendPrc(node *Node)  {
 
 func revPrc(node *Node)  {
 	for  {
-		_, data, err := node.Conn.ReadMessage()
+		_, _, err := node.Conn.ReadMessage()
 		if err != nil {
 			log.Println(err.Error())
 			return

@@ -10,6 +10,7 @@ import (
 func NoteUploadHandler(w http.ResponseWriter, r *http.Request)  {
 	// 解析用户请求参数
 	username := r.FormValue("username")
+	title := r.FormValue("title")
 	content := r.FormValue("content")
 	img := r.FormValue("img")
 	latitude := r.FormValue("latitude")
@@ -18,7 +19,7 @@ func NoteUploadHandler(w http.ResponseWriter, r *http.Request)  {
 	isOpen := r.FormValue("isOpen")
 
 	// 插入note表
-	upload := mylayer.NoteUpload(username, content, img, latitude, longitude, location, isOpen)
+	upload := mylayer.NoteUpload(username, title, content, img, latitude, longitude, location, isOpen)
 	if !upload {
 		w.Write(util.NewRespMsg(1, "FAILED", nil).JSONBytes())
 		return
@@ -52,15 +53,13 @@ func NoteEditHandler(w http.ResponseWriter, r *http.Request) {
 	if r.Method == http.MethodPost {
 		id := r.FormValue("id")
 		username := r.FormValue("username")
+		title := r.FormValue("title")
 		content := r.FormValue("content")
 		img := r.FormValue("img")
-		latitude := r.FormValue("latitude")
-		longitude := r.FormValue("longitude")
-		location := r.FormValue("location")
 		isOpen := r.FormValue("isOpen")
 
 		// 更新note表
-		edit := mylayer.NoteEdit(id, username, content, img, latitude, longitude, location, isOpen)
+		edit := mylayer.NoteEdit(id, title, username, content, img, isOpen)
 		if !edit {
 			w.Write(util.NewRespMsg(1, "FAILED", nil).JSONBytes())
 			return
@@ -86,9 +85,9 @@ func NoteDeleteHandler(w http.ResponseWriter, r *http.Request)  {
 }
 
 func GetUserNoteNumberHandler(w http.ResponseWriter, r *http.Request) {
-	id := r.FormValue("id")
+	username := r.FormValue("username")
 
-	number, err := mylayer.GetUserNoteNumber(id)
+	number, err := mylayer.GetUserNoteNumber(username)
 	if err != nil {
 		w.Write(util.NewRespMsg(1, "FAILED", nil).JSONBytes())
 		return

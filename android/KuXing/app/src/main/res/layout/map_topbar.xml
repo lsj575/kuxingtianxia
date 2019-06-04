@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="#FFFFFF"
+
     android:paddingBottom="10dp"
     android:paddingTop="10dp"
     android:gravity="center"
@@ -11,38 +12,43 @@
 
     <LinearLayout
         android:id="@+id/search_wrapper"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:gravity="center"
-        android:layout_toRightOf="@+id/btn_catalogue"
         android:layout_centerVertical="true">
+        <Button
+            android:id="@+id/btn_catalogue"
+            android:layout_width="23dp"
+            android:layout_height="23dp"
+            android:layout_centerVertical="true"
+            android:background="@mipmap/catalogue"
+            android:layout_marginLeft="20dp"/>
+
         <ImageView
             android:layout_width="20dp"
             android:layout_height="20dp"
+            android:layout_marginLeft="40dp"
             android:src="@mipmap/search"/>
         <TextView
             android:id="@+id/search_text"
-            android:layout_width="240dp"
+            android:layout_width="100dp"
+            android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:textSize="18dp"
-            android:textColor="#515151"
+            android:textSize="20dp"
+            android:layout_marginLeft="10dp"
             android:text="搜索内容"/>
+
+        <Button
+            android:id="@+id/btn_add"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_toRightOf="@+id/search_wrapper"
+            android:layout_marginLeft="20dp"
+            android:background="@mipmap/add"
+            android:layout_centerVertical="true"
+            />
     </LinearLayout>
-    <Button
-        android:id="@+id/btn_add"
-        android:layout_width="24dp"
-        android:layout_height="24dp"
-        android:layout_toRightOf="@+id/search_wrapper"
-        android:background="@mipmap/add"
-        android:layout_centerVertical="true"
-        android:layout_marginLeft="20dp"/>
-    <Button
-        android:id="@+id/btn_catalogue"
-        android:layout_width="24dp"
-        android:layout_height="24dp"
-        android:layout_centerVertical="true"
-        android:background="@mipmap/catalogue"
-        android:layout_marginRight="20dp"/>
+
 
 </RelativeLayout>

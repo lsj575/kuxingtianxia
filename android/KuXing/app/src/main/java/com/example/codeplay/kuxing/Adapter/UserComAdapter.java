@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.example.codeplay.kuxing.Entity.Event;
 import com.example.codeplay.kuxing.R;
@@ -54,6 +55,18 @@ public class UserComAdapter extends BaseAdapter {
         mdata.add(null);
         pictureAdapter = new PictureAdapter(mdata,mContext);
         gridView.setAdapter(pictureAdapter);
+        TextView location;
+        TextView content;
+        TextView date;
+        TextView friendName;
+        friendName = (TextView)convertView.findViewById(R.id.friendname);
+        friendName.setText(gData.get(position).getUsername());
+        location = (TextView)convertView.findViewById(R.id.location1);
+        location.setText(gData.get(position).getLocation());
+        content = (TextView)convertView.findViewById(R.id.neirong2) ;
+        content.setText(gData.get(position).getContent());
+        date = (TextView)convertView.findViewById(R.id.date2) ;
+        date.setText(gData.get(position).getDate().toLocaleString());
 
         return convertView;
     }

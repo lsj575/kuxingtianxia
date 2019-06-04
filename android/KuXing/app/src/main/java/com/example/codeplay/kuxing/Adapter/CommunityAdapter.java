@@ -30,6 +30,7 @@ public class CommunityAdapter extends BaseExpandableListAdapter implements ViewP
     private ArrayList<String> gData;
     private ArrayList<ArrayList<Event>> iData;
     private Context mContext;
+    private TextView friendName;
 
     public CommunityAdapter(ArrayList<String> gData, ArrayList<ArrayList<Event>> iData, Context mContext) {
         this.gData = gData;
@@ -92,10 +93,10 @@ public class CommunityAdapter extends BaseExpandableListAdapter implements ViewP
         PictureAdapter pictureAdapter;
         ArrayList<Bitmap> mdata;
         ImageButton imageButton;
-        TextView friendName;
         TextView location;
         TextView content;
         TextView date;
+        convertView = LayoutInflater.from(mContext).inflate(R.layout.community_group_item, parent, false);
         friendName = (TextView)convertView.findViewById(R.id.friendname);
         friendName.setText(iData.get(groupPosition).get(childPosition).getUsername());
         location = (TextView)convertView.findViewById(R.id.location1);
@@ -104,30 +105,43 @@ public class CommunityAdapter extends BaseExpandableListAdapter implements ViewP
         content.setText(iData.get(groupPosition).get(childPosition).getContent());
         date = (TextView)convertView.findViewById(R.id.date2) ;
         date.setText(iData.get(groupPosition).get(childPosition).getDate().toLocaleString());
+        if(groupPosition == 2){
+            gridView = convertView.findViewById(R.id.pictures2);
 
-        convertView = LayoutInflater.from(mContext).inflate(R.layout.community_group_item, parent, false);
-        gridView = convertView.findViewById(R.id.pictures2);
+            mdata = new ArrayList<Bitmap>();
+            /**
+             * 需要显示的图片
+             */
+            mdata = iData.get(groupPosition).get(childPosition).getBitmaps();
+            pictureAdapter = new PictureAdapter(mdata,mContext);
+            gridView.setAdapter(pictureAdapter);
+        }else{
+            gridView = convertView.findViewById(R.id.pictures2);
+
+            mdata = new ArrayList<Bitmap>();
+            /**
+             * 需要显示的图片
+             */
+            mdata.add(null);
+            mdata.add(null);
+            mdata.add(null);
+            pictureAdapter = new PictureAdapter(mdata,mContext);
+            gridView.setAdapter(pictureAdapter);
+        }
+
         imageButton = convertView.findViewById(R.id.touxiang);
         imageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Toast.makeText(mContext, "你点击了：" , Toast.LENGTH_SHORT).show();
                 /**
                  * 头像点击响应函数
                  */
                 Intent intent = new Intent();
                 intent.setClass(mContext, FriendActivity.class);
+                intent.putExtra("userName",friendName.getText());
                 mContext.startActivity(intent);
             }
         });
-
-        mdata = new ArrayList<Bitmap>();
-        /**
-         * 需要显示的图片
-         */
-        mdata = iData.get(groupPosition).get(childPosition).getBitmaps();
-        pictureAdapter = new PictureAdapter(mdata,mContext);
-        gridView.setAdapter(pictureAdapter);
         return convertView;
     }
 
