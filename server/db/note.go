@@ -12,7 +12,7 @@ func NoteUpload(username string, title string, content string, img string, latit
 	stmt, err := mydb.DBConn().Prepare(
 		"INSERT INTO note " +
 			"(`username`, `title`, `content`, `img`, `latitude`, `longitude`, `location`, `create_time`, `update_time`, `isOpen`) " +
-			"values (?, ?, ?, ?, ?, ?, ?, ?, ?)")
+			"values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)")
 	if err != nil {
 		fmt.Println("Failed to insert, err: ", err)
 		return false
