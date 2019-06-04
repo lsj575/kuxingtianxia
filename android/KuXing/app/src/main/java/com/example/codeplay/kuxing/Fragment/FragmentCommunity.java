@@ -46,14 +46,7 @@ public class FragmentCommunity extends Fragment {
 
         myAdapter = new CommunityAdapter(gData,iData,mContext);
         community.setAdapter(myAdapter);
-        //为列表添加点击事件
-        /*community.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
-            @Override
-            public boolean onChildClick(ExpandableListView parent, View v, int groupPosition, int childPosition, long id) {
-                Toast.makeText(mContext, "你点击了：" + iData.get(groupPosition).get(childPosition).getContent(), Toast.LENGTH_SHORT).show();
-                return true;
-            }
-        });*/
+
         return view;
     }
 }

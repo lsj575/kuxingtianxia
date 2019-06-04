@@ -1,6 +1,7 @@
 package com.example.codeplay.kuxing.Adapter;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -42,15 +43,15 @@ public class UserComAdapter extends BaseAdapter {
         convertView = LayoutInflater.from(mContext).inflate(R.layout.community_group_item,parent,false);
         GridView gridView;
         PictureAdapter pictureAdapter;
-        ArrayList<Integer> mdata;
+        ArrayList<Bitmap> mdata;
         gridView = convertView.findViewById(R.id.pictures2);
-        mdata = new ArrayList<Integer>();
+        mdata = new ArrayList<Bitmap>();
         /**
          * 需要显示的图片
          */
-        mdata.add(1);
-        mdata.add(1);
-        mdata.add(1);
+        mdata.add(null);
+        mdata.add(null);
+        mdata.add(null);
         pictureAdapter = new PictureAdapter(mdata,mContext);
         gridView.setAdapter(pictureAdapter);
 

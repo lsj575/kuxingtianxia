@@ -2,6 +2,7 @@ package com.example.codeplay.kuxing.Adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
@@ -16,6 +17,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.codeplay.kuxing.Activity.FriendActivity;
 import com.example.codeplay.kuxing.Activity.MainActivity;
 import com.example.codeplay.kuxing.Entity.Event;
 import com.example.codeplay.kuxing.Fragment.PictureFragment;
@@ -88,8 +90,21 @@ public class CommunityAdapter extends BaseExpandableListAdapter implements ViewP
     public View getChildView(int groupPosition, int childPosition, boolean isLastChild, View convertView, ViewGroup parent) {
         GridView gridView;
         PictureAdapter pictureAdapter;
-        ArrayList<Integer> mdata;
+        ArrayList<Bitmap> mdata;
         ImageButton imageButton;
+        TextView friendName;
+        TextView location;
+        TextView content;
+        TextView date;
+        friendName = (TextView)convertView.findViewById(R.id.friendname);
+        friendName.setText(iData.get(groupPosition).get(childPosition).getUsername());
+        location = (TextView)convertView.findViewById(R.id.location1);
+        location.setText(iData.get(groupPosition).get(childPosition).getLocation());
+        content = (TextView)convertView.findViewById(R.id.neirong2) ;
+        content.setText(iData.get(groupPosition).get(childPosition).getContent());
+        date = (TextView)convertView.findViewById(R.id.date2) ;
+        date.setText(iData.get(groupPosition).get(childPosition).getDate().toLocaleString());
+
         convertView = LayoutInflater.from(mContext).inflate(R.layout.community_group_item, parent, false);
         gridView = convertView.findViewById(R.id.pictures2);
         imageButton = convertView.findViewById(R.id.touxiang);
@@ -100,15 +115,17 @@ public class CommunityAdapter extends BaseExpandableListAdapter implements ViewP
                 /**
                  * 头像点击响应函数
                  */
+                Intent intent = new Intent();
+                intent.setClass(mContext, FriendActivity.class);
+                mContext.startActivity(intent);
             }
         });
-        mdata = new ArrayList<Integer>();
+
+        mdata = new ArrayList<Bitmap>();
         /**
          * 需要显示的图片
          */
-        mdata.add(1);
-        mdata.add(1);
-        mdata.add(1);
+        mdata = iData.get(groupPosition).get(childPosition).getBitmaps();
         pictureAdapter = new PictureAdapter(mdata,mContext);
         gridView.setAdapter(pictureAdapter);
         return convertView;

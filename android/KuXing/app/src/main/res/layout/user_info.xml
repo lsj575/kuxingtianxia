@@ -110,7 +110,7 @@
     </TableLayout>
 
     <ImageButton
-        android:id="@+id/imageButton"
+        android:id="@+id/imageButton5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@+id/textView5"
@@ -118,6 +118,16 @@
         android:layout_marginEnd="92dp"
         android:layout_marginBottom="-207dp"
         app:srcCompat="@mipmap/outbox" />
+
+    <ImageView
+        android:id="@+id/addfriend"
+        android:layout_width="35dp"
+        android:layout_height="41dp"
+        android:layout_alignTop="@+id/imageButton5"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="91dp"
+        android:layout_marginTop="-2dp"
+        app:srcCompat="@mipmap/add"/>
 
 
 </RelativeLayout>
