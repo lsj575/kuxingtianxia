@@ -50,6 +50,26 @@ func GetNotesHandler(w http.ResponseWriter, r *http.Request)  {
 	w.Write(resp.JSONBytes())
 }
 
+func GetNotesByUsernameHandler(w http.ResponseWriter, r *http.Request)  {
+	// 解析请求参数
+	username :=r.FormValue("author")
+
+	// 查询记事信息
+	notes, err := mylayer.GetNoteByUsername(username)
+	if err != nil {
+		w.WriteHeader(http.StatusForbidden)
+		return
+	}
+
+	// 组装并响应数据
+	resp := util.RespMsg{
+		Code: 0,
+		Msg:  "OK",
+		Data: notes,
+	}
+	w.Write(resp.JSONBytes())
+}
+
 func NoteEditHandler(w http.ResponseWriter, r *http.Request) {
 	// 解析用户参数
 	if r.Method == http.MethodPost {
