@@ -10,6 +10,7 @@ import (
 func NoteUploadHandler(w http.ResponseWriter, r *http.Request)  {
 	// 解析用户请求参数
 	username := r.FormValue("username")
+	title := r.FormValue("title")
 	content := r.FormValue("content")
 	img := r.FormValue("img")
 	latitude := r.FormValue("latitude")
@@ -18,7 +19,7 @@ func NoteUploadHandler(w http.ResponseWriter, r *http.Request)  {
 	isOpen := r.FormValue("isOpen")
 
 	// 插入note表
-	upload := mylayer.NoteUpload(username, content, img, latitude, longitude, location, isOpen)
+	upload := mylayer.NoteUpload(username, title, content, img, latitude, longitude, location, isOpen)
 	if !upload {
 		w.Write(util.NewRespMsg(1, "FAILED", nil).JSONBytes())
 		return
@@ -52,12 +53,13 @@ func NoteEditHandler(w http.ResponseWriter, r *http.Request) {
 	if r.Method == http.MethodPost {
 		id := r.FormValue("id")
 		username := r.FormValue("username")
+		title := r.FormValue("title")
 		content := r.FormValue("content")
 		img := r.FormValue("img")
 		isOpen := r.FormValue("isOpen")
 
 		// 更新note表
-		edit := mylayer.NoteEdit(id, username, content, img, isOpen)
+		edit := mylayer.NoteEdit(id, title, username, content, img, isOpen)
 		if !edit {
 			w.Write(util.NewRespMsg(1, "FAILED", nil).JSONBytes())
 			return
