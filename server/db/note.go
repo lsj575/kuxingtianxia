@@ -7,12 +7,12 @@ import (
 	"time"
 )
 
-func NoteUpload(username string, content string, img string, latitude string, longitude string,
-	location string, isOpen string) bool {
+func NoteUpload(username string, title string, content string, img string, latitude string, longitude string,
+	location string, isOpen int) bool {
 	stmt, err := mydb.DBConn().Prepare(
 		"INSERT INTO note " +
-			"(`username`, `content`, `img`, `latitude`, `longitude`, `location`, `create_time`, `update_time`, `isOpen`) " +
-			"values (?, ?, ?, ?, ?, ?, ?, ?, ?)")
+			"(`username`, `title`, `content`, `img`, `latitude`, `longitude`, `location`, `create_time`, `update_time`, `isOpen`) " +
+			"values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)")
 	if err != nil {
 		fmt.Println("Failed to insert, err: ", err)
 		return false
@@ -20,7 +20,7 @@ func NoteUpload(username string, content string, img string, latitude string, lo
 	defer stmt.Close()
 
 	result, err := stmt.Exec(
-		username, content, img, latitude, longitude, location, time.Now().Unix(), time.Now().Unix(), isOpen)
+		username, title, content, img, latitude, longitude, location, time.Now().Unix(), time.Now().Unix(), isOpen)
 	if err != nil {
 		fmt.Println("Failed to insert, err: ", err)
 		return false
@@ -36,6 +36,8 @@ func NoteUpload(username string, content string, img string, latitude string, lo
 
 type Note struct {
 	Id int64
+	Username string
+	Title string
 	Content string
 	Img string
 	Latitude string
@@ -50,7 +52,7 @@ func GetNote(username string) ([]Note, error) {
 	var notes []Note
 
 	stmt, err := mydb.DBConn().Prepare(
-		"SELECT id, content, img, latitude, longitude, location, create_time, update_time, isOpen " +
+		"SELECT id, title, content, img, latitude, longitude, location, create_time, update_time, isOpen " +
 			"FROM note WHERE username = ? && status = 1")
 	if err != nil {
 		fmt.Println(err.Error())
@@ -65,8 +67,9 @@ func GetNote(username string) ([]Note, error) {
 
 	for rows.Next() {
 		note := Note{}
-		err = rows.Scan(&note.Id, &note.Content, &note.Img, &note.Latitude, &note.Longitude, &note.Location,
+		err = rows.Scan(&note.Id, &note.Title, &note.Content, &note.Img, &note.Latitude, &note.Longitude, &note.Location,
 			&note.CreateTime, &note.UpdateTime, &note.IsOpen)
+		&note.Username = username
 		if err != nil {
 			fmt.Println(err.Error())
 			break
@@ -76,7 +79,7 @@ func GetNote(username string) ([]Note, error) {
 	return notes, nil
 }
 
-func NoteEdit(id string, username string, content string, img string, isOpen string) bool {
+func NoteEdit(id string, username string, title string, content string, img string, isOpen string) bool {
 	stmt, err := mydb.DBConn().Prepare(
 		"SELECT status FROM note WHERE username = ? && id = ?")
 	if err != nil {
@@ -93,13 +96,13 @@ func NoteEdit(id string, username string, content string, img string, isOpen str
 	}
 
 	stmt, err = mydb.DBConn().Prepare(
-		"UPDATE note SET content = ?, img = ?, isOpen = ? WHERE id = ?")
+		"UPDATE note SET title = ?, content = ?, img = ?, isOpen = ? WHERE id = ?")
 	if err != nil {
 		fmt.Println(err.Error())
 		return false
 	}
 
-	_, err = stmt.Exec(content, img, isOpen, id)
+	_, err = stmt.Exec(title, content, img, isOpen, id)
 	if err != nil {
 		fmt.Println(err.Error())
 		return false

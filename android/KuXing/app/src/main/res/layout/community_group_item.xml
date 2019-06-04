@@ -47,18 +47,23 @@
         android:layout_toEndOf="@+id/imageView4"
         android:text="宝通寺站" />
 
-    <android.support.v4.view.ViewPager
-        android:id="@+id/viewpager2"
-        android:layout_width="match_parent"
-        android:layout_height="150dp"
+    <GridView
+        android:id="@+id/pictures2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:numColumns="3"
+        android:paddingLeft="15dp"
+        android:horizontalSpacing="5dp"
+        android:paddingTop="10dp"
+        android:verticalSpacing="5dp"
         android:layout_below="@id/touxiang">
-    </android.support.v4.view.ViewPager>
+    </GridView>
 
     <TextView
         android:id="@+id/neirong2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/viewpager2"
+        android:layout_below="@id/pictures2"
         android:text="hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"/>
@@ -68,7 +73,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/neirong2"
-        android:layout_alignStart="@+id/viewpager2"
+        android:layout_alignStart="@+id/pictures2"
         android:text="2019/05/28 15:30"
         android:layout_marginLeft="20dp"/>
 
