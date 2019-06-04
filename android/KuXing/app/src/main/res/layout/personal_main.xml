@@ -44,6 +44,7 @@
         android:gravity="center"
         android:layout_marginTop="300dp"
         >
+
         <Button
             android:id="@+id/register"
             android:layout_width="78dp"
