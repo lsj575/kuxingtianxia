@@ -69,6 +69,7 @@ func GetNote(username string) ([]Note, error) {
 		note := Note{}
 		err = rows.Scan(&note.Id, &note.Title, &note.Content, &note.Img, &note.Latitude, &note.Longitude, &note.Location,
 			&note.CreateTime, &note.UpdateTime, &note.IsOpen)
+		&note.Username = username
 		if err != nil {
 			fmt.Println(err.Error())
 			break
