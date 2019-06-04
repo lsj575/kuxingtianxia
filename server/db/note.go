@@ -8,7 +8,7 @@ import (
 )
 
 func NoteUpload(username string, title string, content string, img string, latitude string, longitude string,
-	location string, isOpen string) bool {
+	location string, isOpen int) bool {
 	stmt, err := mydb.DBConn().Prepare(
 		"INSERT INTO note " +
 			"(`username`, `title`, `content`, `img`, `latitude`, `longitude`, `location`, `create_time`, `update_time`, `isOpen`) " +

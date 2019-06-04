@@ -4,6 +4,7 @@ import (
 	mylayer "github.com/lsj575/kxtx/server/db"
 	"github.com/lsj575/kxtx/server/util"
 	"net/http"
+	"strconv"
 )
 
 
@@ -17,9 +18,10 @@ func NoteUploadHandler(w http.ResponseWriter, r *http.Request)  {
 	longitude := r.FormValue("longitude")
 	location := r.FormValue("location")
 	isOpen := r.FormValue("isOpen")
+	isOpenNum, _ := strconv.Atoi(isOpen)
 
 	// 插入note表
-	upload := mylayer.NoteUpload(username, title, content, img, latitude, longitude, location, isOpen)
+	upload := mylayer.NoteUpload(username, title, content, img, latitude, longitude, location, isOpenNum)
 	if !upload {
 		w.Write(util.NewRespMsg(1, "FAILED", nil).JSONBytes())
 		return
