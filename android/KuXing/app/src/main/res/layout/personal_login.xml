@@ -70,6 +70,7 @@
         >
 
         <EditText
+            android:id="@+id/uNameEditText"
             android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:paddingLeft="10dp"
@@ -109,6 +110,7 @@
         android:layout_marginTop="395dp"
         >
         <EditText
+            android:id="@+id/uPwdEditText"
             android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:paddingLeft="10dp"
@@ -127,7 +129,7 @@
         android:layout_marginTop="520dp"
         >
         <Button
-            android:id="@+id/denlgu"
+            android:id="@+id/loginButton"
             android:layout_width="98dp"
             android:layout_height="40dp"
             android:background="@drawable/bt_shape"
