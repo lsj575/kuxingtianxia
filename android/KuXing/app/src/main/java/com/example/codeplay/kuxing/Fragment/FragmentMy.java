@@ -46,14 +46,6 @@ public class FragmentMy extends Fragment  {
             }
         });
 
-        Button buttonFrien = view.findViewById(R.id.friend);
-        buttonFrien.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), FrienActivity.class);
-                startActivity(intent);
-            }
-        });
 
 
         return view;
