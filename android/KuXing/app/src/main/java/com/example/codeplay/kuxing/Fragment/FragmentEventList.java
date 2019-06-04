@@ -2,6 +2,7 @@ package com.example.codeplay.kuxing.Fragment;
 
 import android.app.Fragment;
 import android.content.Context;
+import android.content.Intent;
 import android.media.Image;
 import android.os.Build;
 import android.os.Bundle;
@@ -24,14 +25,28 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.support.v4.app.FragmentManager;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.Volley;
+import com.example.codeplay.kuxing.Activity.DetailActivity;
 import com.example.codeplay.kuxing.Activity.MainActivity;
+import com.example.codeplay.kuxing.Entity.Event;
 import com.example.codeplay.kuxing.R;
+import com.example.codeplay.kuxing.util.NormalPostRequest;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.w3c.dom.Text;
 
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 public class FragmentEventList extends Fragment {
 
@@ -39,10 +54,12 @@ public class FragmentEventList extends Fragment {
     private Context mContext;
     private ExpandableListView expandableListView;
     private ImageView btn_close;
-    private RadioGroup buttom_bar;
+    private TextView noevent;
+    private RadioGroup bottom_bar;
     private DisplayMetrics displayMetrics;
+    private Map<String, String> data;
     private ArrayList<String> groups = new ArrayList<String>();
-    private ArrayList<ArrayList<String>> items = new ArrayList<ArrayList<String>>();
+    private ArrayList<ArrayList<Map<String, String>>> items = new ArrayList<ArrayList<Map<String, String>>>();
 //    private String[] group_name = { "test" };
 //    private String[][] items = { { "寒冰射手", "冰晶凤凰", "符文法师", "诺克萨斯之手", "魔蛇之拥", "狂暴之心", "战争之王", "德邦总管", "诺克萨斯统领", "正义巨像", "德玛西亚皇子", "无双剑姬", "放逐之刃", "唤潮鲛姬" } };
 
@@ -55,25 +72,27 @@ public class FragmentEventList extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
-        groups.add("LOL");
-        ArrayList<String> group0 = new ArrayList<String>();
-        group0.add("寒冰射手");
-        group0.add("冰晶凤凰");
-        group0.add("符文法师");
-        items.add(0, group0);
+        groups = (ArrayList<String>) getArguments().getSerializable("groups");
+        items = (ArrayList<ArrayList<Map<String, String>>>) getArguments().getSerializable("items");
         fm = getActivity().getFragmentManager();
         mContext = getActivity();
+        noevent = (TextView) getActivity().findViewById(R.id.noevent);
         displayMetrics = new DisplayMetrics();
         getActivity().getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
         expandableListView = (ExpandableListView) getActivity().findViewById(R.id.eventlist);
-        expandableListView.setAdapter(new EventlistAdapter(groups, items, mContext, displayMetrics.widthPixels));
+        if (items.size() == 0) {
+            noevent.setVisibility(View.VISIBLE);
+        } else {
+            noevent.setVisibility(View.GONE);
+            expandableListView.setAdapter(new EventlistAdapter(groups, items, mContext, displayMetrics.widthPixels));
+        }
         btn_close = (ImageView) getActivity().findViewById(R.id.eventlist_close);
-        buttom_bar = (RadioGroup) getActivity().findViewById(R.id.bottom_bar);
+        bottom_bar = (RadioGroup) getActivity().findViewById(R.id.bottom_bar);
         btn_close.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                buttom_bar.setVisibility(View.VISIBLE);
-                fm.beginTransaction().replace(R.id.layout_content, new FragmentMap()).commit();
+                bottom_bar.setVisibility(View.VISIBLE);
+                fm.popBackStack();
             }
         });
     }
@@ -81,11 +100,11 @@ public class FragmentEventList extends Fragment {
     class EventlistAdapter extends BaseExpandableListAdapter {
 
         private ArrayList<String> gData;
-        private ArrayList<ArrayList<String>> iData;
+        private ArrayList<ArrayList<Map<String, String>>> iData;
         private Context mContext;
         private int screenWidth;
 
-        public EventlistAdapter(ArrayList<String> gData, ArrayList<ArrayList<String>> iData, Context mContext, int screenWidth) {
+        public EventlistAdapter(ArrayList<String> gData, ArrayList<ArrayList<Map<String, String>>> iData, Context mContext, int screenWidth) {
             this.gData = gData;
             this.iData = iData;
             this.mContext = mContext;
@@ -161,17 +180,59 @@ public class FragmentEventList extends Fragment {
                 itemHolder.delete.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
+                        data = new HashMap<>();
+                        data.put("username", "codeplay");
+                        data.put("token", "44c42b0bc9a88d630c0574367dc56d525cf5d161");
+                        data.put("id", items.get(group_index).get(item_index).get("Id"));
+                        RequestQueue requestQueue = Volley.newRequestQueue(getActivity());
+                        Request<JSONObject> request = new NormalPostRequest("http://120.79.159.186:8080/note/delete",
+                                new Response.Listener<JSONObject>() {
+                                    @Override
+                                    public void onResponse(JSONObject response) {
+                                        try {
+                                            if (response.getString("code") == "0") {
+                                                Log.i("delete", "OK");
+                                            }
+                                        } catch (JSONException e) {
+                                            e.printStackTrace();
+                                        }
+                                    }
+                                }, new Response.ErrorListener() {
+                            @Override
+                            public void onErrorResponse(VolleyError error) {
+                                Log.e("httperror", error.getMessage(), error);
+                            }
+                        }, data);
+                        requestQueue.add(request);
                         items.get(group_index).remove(item_index);
                         EventlistAdapter.this.notifyDataSetChanged();
                         Log.i("group index", String.valueOf(group_index));
                         Log.i("item index", String.valueOf(item_index));
                     }
                 });
+                itemHolder.item.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Log.i("timastamp", items.get(group_index).get(item_index).get("CreateTime"));
+                        Event event = new Event(
+                                items.get(group_index).get(item_index).get("Username"),
+                                items.get(group_index).get(item_index).get("Title"),
+                                items.get(group_index).get(item_index).get("Content"),
+                                items.get(group_index).get(item_index).get("Location"),
+                                Double.valueOf(items.get(group_index).get(item_index).get("Latitude").toString()),
+                                Double.valueOf(items.get(group_index).get(item_index).get("Longitude").toString()),
+                                items.get(group_index).get(item_index).get("Img"),
+                                (new Date(new Long(items.get(group_index).get(item_index).get("CreateTime")))));
+                        Intent intent = new Intent(getActivity(), DetailActivity.class);
+                        intent.putExtra("event", event);
+                        startActivity(intent);
+                    }
+                });
                 convertView.setTag(itemHolder);
             } else {
                 itemHolder = (ViewHolderItem) convertView.getTag();
             }
-            itemHolder.item.setText(iData.get(i).get(i1));
+            itemHolder.item.setText(iData.get(i).get(i1).get("Location"));
             return convertView;
         }
 

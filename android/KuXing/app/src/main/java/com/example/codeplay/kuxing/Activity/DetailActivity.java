@@ -11,11 +11,18 @@ import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 
+import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.codeplay.kuxing.Entity.Event;
 import com.example.codeplay.kuxing.R;
+
+import org.w3c.dom.Text;
+
+import java.text.SimpleDateFormat;
 
 
 public class DetailActivity extends AppCompatActivity implements RadioGroup.OnCheckedChangeListener{
@@ -25,10 +32,12 @@ public class DetailActivity extends AppCompatActivity implements RadioGroup.OnCh
     private EditText content;
     private AlertDialog alert = null;
     private AlertDialog.Builder builder = null;
+    private TextView date, location = null;
     private Context mContext;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_detail);
         //设置文本不可编辑，并不可打开键盘
         title = (EditText) findViewById(R.id.biaoti);
@@ -37,6 +46,18 @@ public class DetailActivity extends AppCompatActivity implements RadioGroup.OnCh
         content = (EditText) findViewById(R.id.neirong);
         content.setFocusable(false);
         content.setFocusableInTouchMode(false);
+        date = (TextView) findViewById(R.id.date);
+        location = (TextView) findViewById(R.id.location);
+
+        Intent intent = getIntent();
+        Event event = (Event) intent.getSerializableExtra("event");
+        Log.i("activitydata", event.getImg());
+        title.setText(event.getTitle());
+        content.setText(event.getContent());
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        date.setText(simpleDateFormat.format(event.getDate()));
+        content.setHint(event.getContent());
+        location.setText(event.getLocation());
 
         title.setOnClickListener(new View.OnClickListener() {
             @Override
