@@ -1,5 +1,6 @@
 package com.example.codeplay.kuxing.Fragment;
 
+import android.app.Activity;
 import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,10 +8,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-
-import com.example.codeplay.kuxing.Activity.ChangeInfoActivity;
-import com.example.codeplay.kuxing.Activity.FanActivity;
-import com.example.codeplay.kuxing.Activity.FrienActivity;
 import com.example.codeplay.kuxing.Activity.LoginActivity;
 import com.example.codeplay.kuxing.Activity.RegisterActivity;
 import com.example.codeplay.kuxing.Activity.UserActivity;
@@ -36,31 +33,16 @@ public class FragmentMy extends Fragment  {
                 startActivity(intent);
             }
         });
-        Button buttonC = view.findViewById(R.id.changinfo);
-        buttonC.setOnClickListener(new View.OnClickListener() {
+        Button buttonP = view.findViewById(R.id.zhuye);
+        buttonP.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), ChangeInfoActivity.class);
-                startActivity(intent);
-            }
-        });
-        Button buttonFan = view.findViewById(R.id.fans);
-        buttonFan.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), FanActivity.class);
-                startActivity(intent);
-            }
-        });
-        Button buttonFrien = view.findViewById(R.id.friend);
-        buttonFrien.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), FrienActivity.class);
+                Intent intent = new Intent(getActivity(), UserActivity.class);
                 startActivity(intent);
             }
         });
         return view;
     }
 }
+
 
