@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name="spingarr">
+        <item>选项</item>
         <item>编辑个人信息</item>
         <item>查看好友列表</item>
         <item>查看粉丝列表</item>
