@@ -17,7 +17,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="~~酷行天下~~"
+            android:text="酷行天下"
             android:textSize="22sp"
             android:textColor="#ffffff"/>
     </LinearLayout>
@@ -30,10 +30,10 @@
         >
         <Button
             android:id="@+id/login"
-            android:layout_width="78dp"
+            android:layout_width="100dp"
             android:layout_height="35dp"
             android:background="@drawable/bt_shape"
-            android:text="登  陆"
+            android:text="登  录"
             android:textColor="#2e647a"
             android:textStyle="bold" />
     </LinearLayout>
@@ -47,7 +47,7 @@
 
         <Button
             android:id="@+id/register"
-            android:layout_width="78dp"
+            android:layout_width="100dp"
             android:layout_height="35dp"
             android:background="@drawable/bt_shape"
             android:text="注  册"

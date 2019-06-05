@@ -40,7 +40,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="255dp"
         android:layout_marginEnd="-213dp"
-        android:layout_toStartOf="@+id/userName"
+        android:layout_toStartOf="@id/userName"
         android:shrinkColumns="0,1,2">
 
         <TableRow>
@@ -110,7 +110,7 @@
         android:id="@+id/imageButton5"
         android:layout_width="35dp"
         android:layout_height="41dp"
-        android:layout_above="@+id/signature"
+        android:layout_above="@id/signature"
         android:layout_alignParentEnd="true"
         android:layout_marginEnd="92dp"
         android:layout_marginBottom="-207dp"
