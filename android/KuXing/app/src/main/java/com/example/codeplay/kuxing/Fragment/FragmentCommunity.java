@@ -47,8 +47,8 @@ public class FragmentCommunity extends Fragment {
         community = view.findViewById(R.id.community);
         //读取数据库内容
         data = new HashMap<>();
-        data.put("username", "miracle");
-        data.put("token", "8b8f7f10c6a0cde76a6476062c5683b85cf5e99a");
+        data.put("username", "codeplay");
+        data.put("token", "44c42b0bc9a88d630c0574367dc56d525cf5d161");
         RequestQueue requestQueue = Volley.newRequestQueue(mContext);
         Request<JSONObject> request = new NormalPostRequest("http://120.79.159.186:8080/fan/note",
                 new Response.Listener<JSONObject>() {

@@ -3,6 +3,7 @@ package com.example.codeplay.kuxing.Fragment;
 import android.app.Fragment;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.media.Image;
 import android.os.Build;
 import android.os.Bundle;
@@ -214,17 +215,19 @@ public class FragmentEventList extends Fragment {
                     @Override
                     public void onClick(View view) {
                         Log.i("timastamp", items.get(group_index).get(item_index).get("CreateTime"));
+                        ArrayList<Bitmap> bitmaps = new ArrayList<Bitmap>();
                         Event event = new Event(
                                 items.get(group_index).get(item_index).get("Username"),
                                 items.get(group_index).get(item_index).get("Title"),
                                 items.get(group_index).get(item_index).get("Content"),
+                                Double.valueOf(items.get(group_index).get(item_index).get("Latitude")),
+                                Double.valueOf(items.get(group_index).get(item_index).get("Longitude")),
                                 items.get(group_index).get(item_index).get("Location"),
-                                Double.valueOf(items.get(group_index).get(item_index).get("Latitude").toString()),
-                                Double.valueOf(items.get(group_index).get(item_index).get("Longitude").toString()),
-                                items.get(group_index).get(item_index).get("Img"),
-                                (new Date(new Long(items.get(group_index).get(item_index).get("CreateTime")))));
+                                (new Date(new Long(items.get(group_index).get(item_index).get("CreateTime")))),
+                                bitmaps);
                         Intent intent = new Intent(getActivity(), DetailActivity.class);
                         intent.putExtra("event", event);
+                        intent.putExtra("id", items.get(group_index).get(item_index).get("Id"));
                         startActivity(intent);
                     }
                 });
@@ -232,7 +235,7 @@ public class FragmentEventList extends Fragment {
             } else {
                 itemHolder = (ViewHolderItem) convertView.getTag();
             }
-            itemHolder.item.setText(iData.get(i).get(i1).get("Location"));
+            itemHolder.item.setText(iData.get(i).get(i1).get("Title"));
             return convertView;
         }
 

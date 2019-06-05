@@ -28,8 +28,8 @@
         android:id="@+id/imageDibiao"
         android:layout_width="20dp"
         android:layout_height="26dp"
-        android:layout_below="@+id/date"
-        android:layout_alignStart="@+id/date"
+        android:layout_below="@id/date"
+        android:layout_alignStart="@id/date"
         android:layout_marginStart="2dp"
         android:layout_marginTop="2dp"
         app:srcCompat="@mipmap/dibiao" />

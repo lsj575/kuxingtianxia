@@ -1,6 +1,5 @@
 package com.example.codeplay.kuxing.Activity;
 
-import org.apache.http.Header;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.ContentResolver;
@@ -32,13 +31,11 @@ import com.android.volley.toolbox.Volley;
 import com.example.codeplay.kuxing.Adapter.PictureAdapter;
 import com.example.codeplay.kuxing.R;
 import com.example.codeplay.kuxing.util.NormalPostRequest;
-import com.loopj.android.http.AsyncHttpClient;
-import com.loopj.android.http.AsyncHttpResponseHandler;
-import com.loopj.android.http.RequestParams;
 
 import org.json.JSONObject;
 import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -53,6 +50,11 @@ public class InsertDetailActivity extends AppCompatActivity {
     private ProgressDialog mDialog ;
     private EditText title;
     private EditText content;
+    private TextView place;
+    private TextView time;
+    private double latitude;
+    private double longitude;
+    private String location;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,6 +64,20 @@ public class InsertDetailActivity extends AppCompatActivity {
         gridView = findViewById(R.id.pictures);
         title = findViewById(R.id.biaoti);
         content = findViewById(R.id.neirong);
+        Intent intent = getIntent();
+        location = intent.getStringExtra("location");
+        latitude = intent.getDoubleExtra("latitude",0.00);
+        longitude = intent.getDoubleExtra("longitude",0.00);
+
+        Log.i("result2",location);
+        Log.i("result2",String.valueOf(latitude));
+
+        place = findViewById(R.id.location);
+        place.setText(location);
+        time = findViewById(R.id.date);
+        time.setText(new Date().toLocaleString());
+
+        Log.i("result2",location);
 
         //修改图标大小
         TextView add_picture = (TextView) findViewById(R.id.add_picture);
@@ -87,13 +103,13 @@ public class InsertDetailActivity extends AppCompatActivity {
             public void onClick(View v) {
                 //完成响应函数
                 Map<String, String> data = new HashMap<String, String>();
-                data.put("username", "miracle");
-                data.put("token", "8b8f7f10c6a0cde76a6476062c5683b85cf5e99a");
+                data.put("username", "codeplay");
+                data.put("token", "44c42b0bc9a88d630c0574367dc56d525cf5d161");
                 data.put("title",title.getText().toString());
                 data.put("content",content.getText().toString());
-                data.put("location","湖北武汉");
-                data.put("latitude","127");
-                data.put("longitude","127");
+                data.put("location",location);
+                data.put("latitude",String.valueOf(latitude));
+                data.put("longitude",String.valueOf(longitude));
                 data.put("img","");
                 data.put("isOpen","1");
                 RequestQueue requestQueue = Volley.newRequestQueue(InsertDetailActivity.this);
@@ -120,6 +136,9 @@ public class InsertDetailActivity extends AppCompatActivity {
                 InsertDetailActivity.this.finish();
             }
         });
+
+        Log.i("result2",location);
+
         mDialog = new ProgressDialog(this) ;
         mDialog.setCanceledOnTouchOutside(false);
 
