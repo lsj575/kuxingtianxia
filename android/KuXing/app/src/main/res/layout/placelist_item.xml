@@ -3,41 +3,48 @@
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="wrap_content"
     android:layout_height="40dp"
     android:scrollbars="none"
-    android:id="@+id/eventlist_hsv"
-    android:descendantFocusability="blocksDescendants">
+    android:id="@+id/placelist_hsv"
+    android:background="#ffffff">
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:orientation="horizontal">
         <LinearLayout
-            android:id="@+id/eventlist_item_content"
+            android:id="@+id/placelist_item_content"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:gravity="center">
+            <ImageView
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:src="@mipmap/place"/>
             <TextView
-                android:id="@+id/item_text"
+                android:id="@+id/place_text"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:padding="10dp" />
+                android:padding="10dp"
+                android:layout_weight="1"
+                android:textSize="18dp"
+                android:textColor="#515151"/>
+            <ImageView
+                android:id="@+id/place_go"
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:src="@mipmap/go"/>
         </LinearLayout>
         <LinearLayout
-            android:id="@+id/event_list_ops"
+            android:id="@+id/place_list_ops"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:orientation="horizontal">
             <Button
-                android:id="@+id/eventlist_item_mark"
+                android:id="@+id/placelist_item_mark"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:background="#888888"
                 android:text="标记待去"
                 android:textColor="#ffffff" />
-            <ImageView
-                android:id="@+id/eventlist_item_delete"
-                android:layout_width="36dp"
-                android:layout_height="match_parent"
-                android:background="#d81e06"
-                android:src="@mipmap/trash" />
         </LinearLayout>
     </LinearLayout>
 </HorizontalScrollView>

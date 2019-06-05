@@ -21,8 +21,8 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="1px"
-        android:layout_marginTop="330dp"
-        android:background="#000000"/>
+        android:layout_marginTop="325dp"
+        android:background="#a4bfda"/>
 
         <ListView
             android:id="@+id/user_community"

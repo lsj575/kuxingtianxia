@@ -1,7 +1,11 @@
 package com.example.codeplay.kuxing.Activity;
 
 import android.app.DialogFragment;
+import android.content.ContentValues;
+import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -22,6 +26,8 @@ import com.example.codeplay.kuxing.DataOfServer;
 import com.example.codeplay.kuxing.R;
 import com.example.codeplay.kuxing.NormalPostRequest;
 import com.example.codeplay.kuxing.VolleyCallBack;
+import com.example.codeplay.kuxing.util.DatabaseHelper;
+import com.example.codeplay.kuxing.util.SQLiteDAOImpl;
 
 import org.json.JSONObject;
 
@@ -64,6 +70,8 @@ public class LoginActivity extends AppCompatActivity {
         etName = (EditText) findViewById(R.id.uNameEditText);
         etPwd = (EditText) findViewById(R.id.uPwdEditText);
         bnLogin = (Button)findViewById(R.id.loginButton);
+
+
         bnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -94,7 +102,6 @@ public class LoginActivity extends AppCompatActivity {
                                 System.out.println("测试了" + s);
                                 if(s.equals("OK")){
                                     Toast.makeText(LoginActivity.this,"登录成功！",Toast.LENGTH_SHORT).show();
-
                                     Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                                     startActivity(intent);
                                     finish();

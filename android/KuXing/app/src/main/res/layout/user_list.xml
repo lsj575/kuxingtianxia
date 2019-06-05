@@ -17,5 +17,4 @@
         android:entries="@array/spingarr"
         android:prompt="@string/setting" />
 
-
 </RelativeLayout>

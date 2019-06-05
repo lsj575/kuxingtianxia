@@ -1,5 +1,6 @@
 package com.example.codeplay.kuxing.Entity;
 
+import java.io.Serializable;
 import android.graphics.Bitmap;
 
 import java.io.Serializable;
@@ -23,6 +24,8 @@ public class Event implements Serializable {
         this.latitude = latitude;
         this.longitude = longitude;
         this.location = location;
+        this.latitude = latitude;
+        this.longitude = longitude;
         this.date = date;
         this.bitmaps = bitmaps;
     }

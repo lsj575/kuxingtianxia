@@ -27,4 +27,9 @@
         android:text="@string/detail"
         android:textColor="@color/colorPrimary"
         android:textSize="24sp" />
+    <View
+        android:layout_width="wrap_content"
+        android:layout_height="1dp"
+        android:layout_marginTop="40dp"
+        android:background="#a4bfda" />
 </RelativeLayout>

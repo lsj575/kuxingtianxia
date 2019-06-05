@@ -81,11 +81,12 @@
 
         <ImageView
             android:layout_width="50dp"
+            android:id="@+id/newtx"
             android:layout_height="50dp"
             android:layout_weight="1"
             android:layout_marginTop="5dp"
             android:gravity="right"
-            android:src="@mipmap/login"
+            android:src="@mipmap/logo"
             />
         <Button
             android:id="@+id/choose"

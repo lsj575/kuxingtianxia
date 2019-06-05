@@ -2,7 +2,6 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-
     <com.baidu.mapapi.map.MapView
         android:id="@+id/bmapView"
         android:layout_width="match_parent"
@@ -19,5 +18,9 @@
         android:background="#ffffff"
         android:layout_alignParentBottom="true">
     </FrameLayout>
-
+    <TextView
+        android:id="@+id/sqlresult"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="sql"/>
 </RelativeLayout>
