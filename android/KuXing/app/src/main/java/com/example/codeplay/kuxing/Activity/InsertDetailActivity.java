@@ -18,6 +18,7 @@ import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -50,6 +51,8 @@ public class InsertDetailActivity extends AppCompatActivity {
     private ArrayList<Bitmap> mdata = new ArrayList<Bitmap>();
     private Bitmap bitmap;
     private ProgressDialog mDialog ;
+    private EditText title;
+    private EditText content;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +60,8 @@ public class InsertDetailActivity extends AppCompatActivity {
         setContentView(R.layout.activity_update_detail);
         mContext = InsertDetailActivity.this;
         gridView = findViewById(R.id.pictures);
+        title = findViewById(R.id.biaoti);
+        content = findViewById(R.id.neirong);
 
         //修改图标大小
         TextView add_picture = (TextView) findViewById(R.id.add_picture);
@@ -82,6 +87,15 @@ public class InsertDetailActivity extends AppCompatActivity {
             public void onClick(View v) {
                 //完成响应函数
                 Map<String, String> data = new HashMap<String, String>();
+                data.put("username", "miracle");
+                data.put("token", "8b8f7f10c6a0cde76a6476062c5683b85cf5e99a");
+                data.put("title",title.getText().toString());
+                data.put("content",content.getText().toString());
+                data.put("location","湖北武汉");
+                data.put("latitude","127");
+                data.put("longitude","127");
+                data.put("img","");
+                data.put("isOpen","1");
                 RequestQueue requestQueue = Volley.newRequestQueue(InsertDetailActivity.this);
                 Request<JSONObject> request = new NormalPostRequest("http://120.79.159.186:8080/note/upload",
                         new Response.Listener<JSONObject>() {
