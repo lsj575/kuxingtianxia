@@ -108,7 +108,7 @@ func GetNoteByUsername(username string) ([]Note, error) {
 	return notes, nil
 }
 
-func NoteEdit(id string, username string, title string, content string, img string, isOpen string) bool {
+func NoteEdit(id string, title string, username string, content string, img string, isOpen string) bool {
 	stmt, err := mydb.DBConn().Prepare(
 		"SELECT status FROM note WHERE username = ? && id = ?")
 	if err != nil {
