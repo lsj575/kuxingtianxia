@@ -23,25 +23,18 @@
         android:layout_marginRight="15dp"
         android:layout_below="@id/shadow1"
         />
-    <RadioGroup
-        android:id="@+id/bottom_insert"
-        android:layout_width="match_parent"
+
+    <TextView
+        android:id="@+id/add_picture"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:paddingTop="5dp"
-        android:paddingBottom="5dp"
         android:layout_alignParentBottom="true"
-        app:layout_constraintBottom_toBottomOf="parent">
-        <RadioButton
-            android:id="@+id/add_picture"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:button="@null"
-            android:gravity="center"
-            android:textColor="#FF000000"
-            android:drawableTop="@mipmap/fenxiang"
-            android:text="@string/add_picture" />
-    </RadioGroup>
+        android:layout_centerHorizontal="true"
+        android:layout_weight="1"
+        android:button="@null"
+        android:drawableTop="@mipmap/fenxiang"
+        android:gravity="center"
+        android:text="@string/add_picture"
+        android:textColor="#FF000000"/>
 
 </RelativeLayout>

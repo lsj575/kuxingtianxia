@@ -72,6 +72,7 @@
         >
 
         <EditText
+            android:id="@+id/nameEditText"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:ems="10"
@@ -109,11 +110,13 @@
         android:layout_marginTop="320dp"
         >
         <EditText
+            android:id="@+id/pwd1EditText"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:paddingLeft="10dp"
             android:hint="用户密码"
             android:ems="10"
+            android:inputType="textPassword"
             />
     </LinearLayout>
 
@@ -125,10 +128,12 @@
         android:layout_marginTop="360dp"
         >
         <EditText
+            android:id="@+id/pwd2EditText"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:paddingLeft="10dp"
             android:hint="再次输入密码"
+            android:inputType="textPassword"
             android:ems="10"
             />
     </LinearLayout>
@@ -141,7 +146,7 @@
         android:layout_marginTop="430dp"
         >
         <Button
-            android:id="@+id/login"
+            android:id="@+id/logonButton"
             android:layout_width="78dp"
             android:layout_height="35dp"
             android:background="@drawable/bt_shape"
@@ -150,6 +155,8 @@
             android:textStyle="bold" />
 
     </LinearLayout>
+
+
 
 
 </RelativeLayout>
