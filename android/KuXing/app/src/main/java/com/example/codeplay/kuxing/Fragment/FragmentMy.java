@@ -19,6 +19,7 @@ public class FragmentMy extends Fragment  {
     private FragmentManager user;
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.user_topbar, container, false);
+
         return view;
     }
     @Override

@@ -52,7 +52,7 @@ func GetNote(username string) ([]Note, error) {
 	var notes []Note
 
 	stmt, err := mydb.DBConn().Prepare(
-		"SELECT id, title, content, img, latitude, longitude, location, create_time, update_time, isOpen " +
+		"SELECT id, username, title, content, img, latitude, longitude, location, create_time, update_time, isOpen " +
 			"FROM note WHERE username = ? && status = 1")
 	if err != nil {
 		fmt.Println(err.Error())
@@ -67,9 +67,38 @@ func GetNote(username string) ([]Note, error) {
 
 	for rows.Next() {
 		note := Note{}
-		err = rows.Scan(&note.Id, &note.Title, &note.Content, &note.Img, &note.Latitude, &note.Longitude, &note.Location,
+		err = rows.Scan(&note.Id, &note.Username, &note.Title, &note.Content, &note.Img, &note.Latitude, &note.Longitude, &note.Location,
 			&note.CreateTime, &note.UpdateTime, &note.IsOpen)
-		&note.Username = username
+		if err != nil {
+			fmt.Println(err.Error())
+			break
+		}
+		notes = append(notes, note)
+	}
+	return notes, nil
+}
+
+func GetNoteByUsername(username string) ([]Note, error) {
+	var notes []Note
+
+	stmt, err := mydb.DBConn().Prepare(
+		"SELECT id, username, title, content, img, latitude, longitude, location, create_time, update_time, isOpen " +
+			"FROM note WHERE username = ? && status = 1 && isOpen = 1")
+	if err != nil {
+		fmt.Println(err.Error())
+		return notes, err
+	}
+	defer stmt.Close()
+
+	rows, err := stmt.Query(username)
+	if err != nil {
+		return nil, err
+	}
+
+	for rows.Next() {
+		note := Note{}
+		err = rows.Scan(&note.Id, &note.Username, &note.Title, &note.Content, &note.Img, &note.Latitude, &note.Longitude, &note.Location,
+			&note.CreateTime, &note.UpdateTime, &note.IsOpen)
 		if err != nil {
 			fmt.Println(err.Error())
 			break
