@@ -16,11 +16,21 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.Volley;
 import com.example.codeplay.kuxing.Adapter.PictureAdapter;
 import com.example.codeplay.kuxing.Entity.Event;
 import com.example.codeplay.kuxing.R;
+import com.example.codeplay.kuxing.util.NormalPostRequest;
+
+import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class UpdateDetailActivity extends AppCompatActivity {
 
@@ -30,13 +40,15 @@ public class UpdateDetailActivity extends AppCompatActivity {
     private Context mContext;
     private PictureAdapter pictureAdapter;
     private ArrayList<Bitmap> mdata = new ArrayList<Bitmap>();
+    private String id;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_update_detail);
         Intent intent = getIntent();
         Event event = (Event) intent.getSerializableExtra("event");
-        //设置文本不可编辑，并不可打开键盘
+        id = intent.getStringExtra("id");
+
         title = (EditText) findViewById(R.id.biaoti);
         title.setText(event.getTitle());
         content = (EditText) findViewById(R.id.neirong);
@@ -64,8 +76,29 @@ public class UpdateDetailActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //完成响应函数
-                Intent intent = new Intent(UpdateDetailActivity.this,InsertDetailActivity.class);
-                startActivity(intent);
+                Map<String, String> data = new HashMap<String, String>();
+                data.put("username", "miracle");
+                data.put("token", "8b8f7f10c6a0cde76a6476062c5683b85cf5e99a");
+                data.put("title",title.getText().toString());
+                data.put("content",content.getText().toString());
+                data.put("img","");
+                data.put("isOpen","1");
+                data.put("id",id);
+                RequestQueue requestQueue = Volley.newRequestQueue(UpdateDetailActivity.this);
+                Request<JSONObject> request = new NormalPostRequest("http://120.79.159.186:8080/note/edit",
+                        new Response.Listener<JSONObject>() {
+                            @Override
+                            public void onResponse(JSONObject response) {
+                                Log.d("httpresult", "response -> " + response.toString());
+                            }
+                        }, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Log.e("httpresult", error.getMessage(), error);
+                    }
+                }, data);
+                requestQueue.add(request);
+                UpdateDetailActivity.this.finish();
             }
         });
         ImageView imageView = findViewById(R.id.imageView1);

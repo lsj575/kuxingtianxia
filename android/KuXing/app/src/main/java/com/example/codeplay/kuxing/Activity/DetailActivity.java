@@ -19,19 +19,29 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.Volley;
 import com.example.codeplay.kuxing.Adapter.PictureAdapter;
 import com.example.codeplay.kuxing.Entity.Event;
 import com.example.codeplay.kuxing.R;
+import com.example.codeplay.kuxing.util.NormalPostRequest;
 
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 
 public class DetailActivity extends AppCompatActivity {
 
     private EditText title;
     private EditText content;
+    private Event event;
+    private String id;
     private AlertDialog alert = null;
     private AlertDialog.Builder builder = null;
     private Context mContext;
@@ -42,7 +52,8 @@ public class DetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
         Intent intent = getIntent();
-        final Event event = (Event) intent.getSerializableExtra("event");
+        event = (Event) intent.getSerializableExtra("event");
+        id = (String) intent.getStringExtra("id");
 
         //设置文本不可编辑，并不可打开键盘
         title = (EditText) findViewById(R.id.biaoti);
@@ -63,6 +74,7 @@ public class DetailActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(DetailActivity.this,UpdateDetailActivity.class);
                 intent.putExtra("event",event);
+                intent.putExtra("id",id);
                 startActivity(intent);
             }
         });
@@ -71,6 +83,7 @@ public class DetailActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(DetailActivity.this,UpdateDetailActivity.class);
                 intent.putExtra("event",event);
+                intent.putExtra("id",id);
                 startActivity(intent);
             }
         });
@@ -115,7 +128,24 @@ public class DetailActivity extends AppCompatActivity {
                             public void onClick(DialogInterface dialog, int which) {
                                 /**
                                  *
-                                 */
+                                 */Map<String, String> data = new HashMap<String, String>();
+                                data.put("username", "miracle");
+                                data.put("token", "8b8f7f10c6a0cde76a6476062c5683b85cf5e99a");
+                                data.put("id",id);
+                                RequestQueue requestQueue = Volley.newRequestQueue(DetailActivity.this);
+                                Request<JSONObject> request = new NormalPostRequest("http://120.79.159.186:8080/note/delete",
+                                        new Response.Listener<JSONObject>() {
+                                            @Override
+                                            public void onResponse(JSONObject response) {
+                                                Log.d("httpresult", "response -> " + response.toString());
+                                            }
+                                        }, new Response.ErrorListener() {
+                                    @Override
+                                    public void onErrorResponse(VolleyError error) {
+                                        Log.e("httpresult", error.getMessage(), error);
+                                    }
+                                }, data);
+                                requestQueue.add(request);
                                 DetailActivity.this.finish();
                                 Toast.makeText(mContext, "确定", Toast.LENGTH_SHORT).show();
                             }
