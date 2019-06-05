@@ -129,8 +129,8 @@ public class DetailActivity extends AppCompatActivity {
                                 /**
                                  *
                                  */Map<String, String> data = new HashMap<String, String>();
-                                data.put("username", "miracle");
-                                data.put("token", "8b8f7f10c6a0cde76a6476062c5683b85cf5e99a");
+                                data.put("username", "codeplay");
+                                data.put("token", "44c42b0bc9a88d630c0574367dc56d525cf5d161");
                                 data.put("id",id);
                                 RequestQueue requestQueue = Volley.newRequestQueue(DetailActivity.this);
                                 Request<JSONObject> request = new NormalPostRequest("http://120.79.159.186:8080/note/delete",
@@ -170,6 +170,7 @@ public class DetailActivity extends AppCompatActivity {
          * 需要显示的图片
          */
         mdata = event.getBitmaps();
+        //mdata.add(null);
         pictureAdapter = new PictureAdapter(mdata,mContext);
         icon_gridview.setAdapter(pictureAdapter);
     }

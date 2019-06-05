@@ -61,8 +61,8 @@ public class FriendActivity extends AppCompatActivity {
         spinner.setVisibility(View.INVISIBLE);
         //读取数据库内容
         data = new HashMap<>();
-        data.put("username", "miracle");
-        data.put("token", "8b8f7f10c6a0cde76a6476062c5683b85cf5e99a");
+        data.put("username", "codeplay");
+        data.put("token", "44c42b0bc9a88d630c0574367dc56d525cf5d161");
         data.put("author",userName);
         RequestQueue requestQueue = Volley.newRequestQueue(mContext);
         Request<JSONObject> request = new NormalPostRequest("http://120.79.159.186:8080/note/author",
@@ -86,6 +86,7 @@ public class FriendActivity extends AppCompatActivity {
                             }
                             gData = new ArrayList<Event>();
                             for(int i=0;i<group.size();i++){
+                                ArrayList<Bitmap> bitmaps = new ArrayList<Bitmap>();
                                 Event event = new Event(group.get(i).get("Username"),
                                         group.get(i).get("Title"),
                                         group.get(i).get("Content"),
@@ -93,7 +94,7 @@ public class FriendActivity extends AppCompatActivity {
                                         Double.valueOf(group.get(i).get("Longitude")),
                                         group.get(i).get("Location"),
                                         new Date(new Long(group.get(i).get("CreateTime"))),
-                                        null);
+                                        bitmaps);
                                 gData.add(event);
                             }
                             userComAdapter = new UserComAdapter(gData,mContext);
@@ -113,7 +114,7 @@ public class FriendActivity extends AppCompatActivity {
 
         data1 = new HashMap<>();
         data1.put("username",userName);
-        data1.put("token", "8b8f7f10c6a0cde76a6476062c5683b85cf5e99a");
+        data1.put("token", "44c42b0bc9a88d630c0574367dc56d525cf5d161");
         Request<JSONObject> request1 = new NormalPostRequest("http://120.79.159.186:8080/user/info",
                 new Response.Listener<JSONObject>() {
                     @Override

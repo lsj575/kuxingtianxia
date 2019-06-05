@@ -18,9 +18,4 @@
         android:background="#ffffff"
         android:layout_alignParentBottom="true">
     </FrameLayout>
-    <TextView
-        android:id="@+id/sqlresult"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="sql"/>
 </RelativeLayout>

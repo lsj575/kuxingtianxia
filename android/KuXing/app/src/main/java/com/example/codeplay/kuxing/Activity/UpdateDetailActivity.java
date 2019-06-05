@@ -77,8 +77,8 @@ public class UpdateDetailActivity extends AppCompatActivity {
             public void onClick(View v) {
                 //完成响应函数
                 Map<String, String> data = new HashMap<String, String>();
-                data.put("username", "miracle");
-                data.put("token", "8b8f7f10c6a0cde76a6476062c5683b85cf5e99a");
+                data.put("username", "codeplay");
+                data.put("token", "44c42b0bc9a88d630c0574367dc56d525cf5d161");
                 data.put("title",title.getText().toString());
                 data.put("content",content.getText().toString());
                 data.put("img","");

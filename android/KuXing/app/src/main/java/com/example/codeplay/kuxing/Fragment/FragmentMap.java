@@ -78,7 +78,7 @@ public class FragmentMap extends Fragment implements View.OnClickListener {
     private RadioGroup bottom_bar = null;
     private FragmentManager fm;
     private FragmentTransaction ft;
-    private String city;
+    private String city, place;
     private ArrayList<String> groups;
     private ArrayList<ArrayList<Map<String, String>>> items;
     private Map<String, String> data;
@@ -92,21 +92,6 @@ public class FragmentMap extends Fragment implements View.OnClickListener {
     @Override
     public void onStart() {
         initMap();
-        DatabaseHelper dbHelper = new DatabaseHelper(getActivity());
-        SQLiteDatabase db = dbHelper.getWritableDatabase();
-        //Cursor cursor = db.rawQuery("SELECT * FROM user WHERE name = ?", new String[]{"codeplay"});
-
-        Cursor cursor = db.query("users", new String[]{"username"}, null, null, null, null, null);
-        //利用游标遍历所有数据对象
-        //为了显示全部，把所有对象连接起来，放到TextView中
-        String textview_data = "";
-        while(cursor.moveToNext()) {
-            String name = cursor.getString(cursor.getColumnIndex("username"));
-            textview_data = textview_data + "\n" + name;
-        }
-
-        TextView sqlresult = (TextView) getActivity().findViewById(R.id.sqlresult);
-        sqlresult.setText(String.valueOf(textview_data));
         groups = new ArrayList<String>();
         items = new ArrayList<ArrayList<Map<String, String>>>();
         data = new HashMap<>();
@@ -174,6 +159,9 @@ public class FragmentMap extends Fragment implements View.OnClickListener {
             public void onClick(View view) {
                 Intent intent = new Intent();
                 intent.setClass(getActivity(), InsertDetailActivity.class);
+                intent.putExtra("location", place);
+                intent.putExtra("latitude", lat);
+                intent.putExtra("longitude", lon);
                 startActivity(intent);
             }
         });
@@ -269,6 +257,7 @@ public class FragmentMap extends Fragment implements View.OnClickListener {
                 lat = location.getLatitude();
                 lon = location.getLongitude();
                 city = location.getCity();
+                place = location.getAddrStr();
                 setMapCenter(18);
             }
         }
