@@ -37,7 +37,7 @@
             android:layout_height="50dp"
             android:layout_marginTop="7dp"
             android:layout_marginLeft="15dp"
-            android:src="@mipmap/login"
+            android:src="@mipmap/logo"
             />
         <TextView
             android:layout_width="wrap_content"

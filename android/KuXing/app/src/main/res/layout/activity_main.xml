@@ -14,7 +14,8 @@
         android:paddingTop="5dp"
         android:paddingBottom="5dp"
         android:layout_alignParentBottom="true"
-        app:layout_constraintBottom_toBottomOf="parent">
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:background="#ffffff">
         <RadioButton
             android:id="@+id/radio0"
             android:layout_width="wrap_content"
@@ -46,7 +47,7 @@
             android:textColor="#FF000000"
             android:drawableTop="@mipmap/my_unselect"
             android:gravity="center"
-            android:text="@string/mine" />
+            android:text="我的" />
 
     </RadioGroup>
     

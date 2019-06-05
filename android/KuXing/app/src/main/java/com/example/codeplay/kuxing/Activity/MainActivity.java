@@ -3,6 +3,7 @@ package com.example.codeplay.kuxing.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -19,6 +20,7 @@ import com.example.codeplay.kuxing.Fragment.FragmentCommunity;
 import com.example.codeplay.kuxing.Fragment.FragmentMap;
 import com.example.codeplay.kuxing.Fragment.FragmentMy;
 import com.example.codeplay.kuxing.R;
+import com.example.codeplay.kuxing.util.SQLiteDAOImpl;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -68,6 +70,8 @@ public class MainActivity extends AppCompatActivity implements RadioGroup.OnChec
         bottom_bar.setOnCheckedChangeListener(this);
         rb_map = (RadioButton)findViewById(R.id.radio0);
         rb_map.setChecked(true);
+        SQLiteDAOImpl sqLiteDAO = new SQLiteDAOImpl();
+
     }
 
     @Override
@@ -151,6 +155,13 @@ public class MainActivity extends AppCompatActivity implements RadioGroup.OnChec
                 break;
         }
         fTransaction.commit();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        //转发返回的结果给fragment
+        fg1.onActivityResult(requestCode, resultCode, data);
     }
 
 }
