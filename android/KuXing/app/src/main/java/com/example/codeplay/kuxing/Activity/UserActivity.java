@@ -2,6 +2,7 @@ package com.example.codeplay.kuxing.Activity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -24,6 +25,7 @@ public class UserActivity extends AppCompatActivity {
     private ListView listView;
     private Spinner spinner;
     private ImageView Imageback;
+    private SharedPreferences setting;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,16 +35,21 @@ public class UserActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 UserActivity.this.finish();
+                Intent intent;
+                intent = new Intent(UserActivity.this, MainActivity.class);
+                startActivity(intent);
             }
         });
+
         mContext = UserActivity.this;
         listView = (ListView) findViewById(R.id.user_community);
         gData = new ArrayList<Event>();
         gData.add(new Event());
         gData.add(new Event());
         gData.add(new Event());
-        userComAdapter = new UserComAdapter(gData,mContext);
+        userComAdapter = new UserComAdapter(gData, mContext);
         listView.setAdapter(userComAdapter);
+
         spinner = findViewById(R.id.spinner);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter
                 .createFromResource(this, R.array.spingarr,
@@ -69,11 +76,13 @@ public class UserActivity extends AppCompatActivity {
                                                       case 4:
                                                           intent = new Intent(UserActivity.this, BeginActivity.class);
                                                           startActivity(intent);
+                                                          setting.edit().putBoolean("isFirstRun", true).commit();
                                                           break;
                                                   }
                                               }
                                               @Override
-                                              public void onNothingSelected(AdapterView<?> adapterView) { }
+                                              public void onNothingSelected(AdapterView<?> adapterView) {
+                                              }
                                           }
         );
     }
