@@ -120,7 +120,7 @@ public class FriendActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(JSONObject response) {
                         try {
-                            JSONArray res = response.getJSONArray("data");
+                            JSONArray res = new JSONArray(response.getJSONArray("data"));
                             for (int i = 0; i < res.length(); i++) {
                                 Map<String, String> map = new HashMap<>();
                                 map.put("Id", res.getJSONObject(i).getString("Id"));
@@ -134,7 +134,6 @@ public class FriendActivity extends AppCompatActivity {
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
-                        Log.d("bbb", "response -> " + response.toString());
                     }
                 }, new Response.ErrorListener() {
             @Override

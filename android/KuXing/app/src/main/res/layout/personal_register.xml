@@ -36,7 +36,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="~~酷行天下~~"
+            android:text="酷行天下"
             android:textSize="20sp"
             android:textColor="#000000"/>
     </LinearLayout>
@@ -56,7 +56,7 @@
             android:src="@mipmap/yonghu"
             />
         <TextView
-            android:layout_width="150dp"
+            android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:text="用户名"
             android:textStyle="bold"
@@ -73,7 +73,7 @@
 
         <EditText
             android:id="@+id/nameEditText"
-            android:layout_width="150dp"
+            android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:ems="10"
             android:paddingLeft="10dp"
@@ -96,7 +96,7 @@
             android:src="@mipmap/mima"
             />
         <TextView
-            android:layout_width="150dp"
+            android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:text="密    码"
             android:textStyle="bold" />
@@ -111,7 +111,7 @@
         >
         <EditText
             android:id="@+id/pwd1EditText"
-            android:layout_width="150dp"
+            android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:paddingLeft="10dp"
             android:hint="用户密码"
@@ -129,7 +129,7 @@
         >
         <EditText
             android:id="@+id/pwd2EditText"
-            android:layout_width="150dp"
+            android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:paddingLeft="10dp"
             android:hint="再次输入密码"
@@ -147,7 +147,7 @@
         >
         <Button
             android:id="@+id/logonButton"
-            android:layout_width="78dp"
+            android:layout_width="100dp"
             android:layout_height="35dp"
             android:background="@drawable/bt_shape"
             android:text="注  册"

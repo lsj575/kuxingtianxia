@@ -83,6 +83,8 @@ public class FragmentSearch extends Fragment {
         fm = getActivity().getFragmentManager();
         city = getArguments().getString("city");
 
+        Log.i("testtt", city);
+
         int id = searchView.getContext().getResources().getIdentifier("android:id/search_src_text", null, null);
         final EditText textView = (EditText) searchView.findViewById(id);
         textView.setTextSize(16);
@@ -91,15 +93,16 @@ public class FragmentSearch extends Fragment {
         coordinate = new ArrayList<String>();
         displayMetrics = new DisplayMetrics();
         getActivity().getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
-        placelistAdapter = new PlacelistAdapter(data, mContext, displayMetrics.widthPixels);
-        listView.setAdapter(placelistAdapter);
+//        placelistAdapter = new PlacelistAdapter(data, mContext, displayMetrics.widthPixels);
+//        listView.setAdapter(placelistAdapter);
 
         btn_search.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 suggestionSearch.requestSuggestion(new SuggestionSearchOption()
                         .city(city)
-                        .keyword(String.valueOf(textView.getText())));
+                        .keyword("武汉"));
+//                        .keyword(String.valueOf(textView.getText())));
 //                poiSearch.searchInCity(new PoiCitySearchOption()
 //                        .city("武汉") //必填
 //                        .keyword(String.valueOf(textView.getText())) //必填
@@ -124,22 +127,22 @@ public class FragmentSearch extends Fragment {
                 suglist = suggestionResult.getAllSuggestions();
                 int length = suglist.size();
                 int i = 0;
-                if (length == 0) {
-                    search_result.setVisibility(View.VISIBLE);
-                } else {
-                    search_result.setVisibility(View.GONE);
-                    do {
-                        map = new HashMap();
-                        map.put("name", suglist.get(i).key);
-                        map.put("city", suglist.get(i).city);
-                        map.put("lat", suglist.get(i).pt.latitude);
-                        map.put("lon", suglist.get(i).pt.longitude);
-                        map.put("uid", suglist.get(i).uid);
-                        data.add(map);
-                        i = i + 1;
-                    } while (i < suglist.size());
-                    placelistAdapter.notifyDataSetChanged();
-                }
+//                if (length == 0) {
+//                    search_result.setVisibility(View.VISIBLE);
+//                } else {
+//                    search_result.setVisibility(View.GONE);
+//                    do {
+//                        map = new HashMap();
+//                        map.put("name", suglist.get(i).key);
+//                        map.put("city", suglist.get(i).city);
+//                        map.put("lat", suglist.get(i).pt.latitude);
+//                        map.put("lon", suglist.get(i).pt.longitude);
+//                        map.put("uid", suglist.get(i).uid);
+//                        data.add(map);
+//                        i = i + 1;
+//                    } while (i < suglist.size());
+//                    placelistAdapter.notifyDataSetChanged();
+//                }
 //                poi.setText(String.valueOf(suggestionInfo));
             }
         };

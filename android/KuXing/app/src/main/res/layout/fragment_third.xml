@@ -4,19 +4,21 @@
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center"
+    android:background="@mipmap/yindao3"
     android:orientation="vertical">
 
     <TextView
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="第三页"
         android:textSize="20sp"/>
 
     <Button
         android:id="@+id/accessBtn"
+        android:background="@drawable/bt_shape"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="进入体验"/>
+        android:text="进入体验"
+        />
 
 </LinearLayout>

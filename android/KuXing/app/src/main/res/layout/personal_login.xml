@@ -53,7 +53,7 @@
             android:src="@mipmap/yonghu"
             />
         <TextView
-            android:layout_width="150dp"
+            android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:text="用户名"
             android:textStyle="bold"
@@ -71,8 +71,7 @@
         <EditText
 
             android:id="@+id/uNameEditText"
-            android:layout_width="150dp"
-
+            android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:ems="10"
             android:paddingLeft="10dp"
@@ -94,7 +93,7 @@
             android:src="@mipmap/mima"
             />
         <TextView
-            android:layout_width="150dp"
+            android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:text="密    码"
             android:textStyle="bold" />
@@ -110,7 +109,7 @@
         <EditText
 
             android:id="@+id/uPwdEditText"
-            android:layout_width="150dp"
+            android:layout_width="200dp"
 
             android:layout_height="wrap_content"
             android:paddingLeft="10dp"
@@ -130,11 +129,11 @@
         <Button
 
             android:id="@+id/loginButton"
-            android:layout_width="78dp"
+            android:layout_width="100dp"
             android:layout_height="35dp"
 
             android:background="@drawable/bt_shape"
-            android:text="登  陆"
+            android:text="登  录"
             android:textColor="#2e647a"
             android:textStyle="bold" />
 
