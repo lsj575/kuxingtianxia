@@ -59,6 +59,7 @@
         <activity android:name=".Activity.UpdateDetailActivity" />
         <activity android:name=".Activity.InsertDetailActivity"/>
         <activity android:name=".Activity.UserActivity"/>
+        <activity android:name=".Activity.FriendActivity"/>
     </application>
 
 </manifest>

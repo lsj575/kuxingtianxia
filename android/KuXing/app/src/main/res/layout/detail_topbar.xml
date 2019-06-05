@@ -5,7 +5,7 @@
     android:layout_height="match_parent">
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/fanhui1"
         android:layout_width="15dp"
         android:layout_height="21dp"
         android:layout_alignParentStart="true"
@@ -21,7 +21,7 @@
         android:layout_alignParentTop="true"
         android:layout_marginStart="6dp"
         android:layout_marginTop="0dp"
-        android:layout_toEndOf="@+id/imageView"
+        android:layout_toEndOf="@+id/fanhui1"
         android:paddingTop="5dp"
         android:paddingBottom="5dp"
         android:text="@string/detail"
