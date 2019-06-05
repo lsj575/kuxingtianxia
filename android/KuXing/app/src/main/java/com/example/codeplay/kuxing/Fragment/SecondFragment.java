@@ -13,7 +13,6 @@ import com.example.codeplay.kuxing.R;
 public class SecondFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_second, container,false);
-        TextView textView = view.findViewById(R.id.textView2);
         return view;
     }
 }

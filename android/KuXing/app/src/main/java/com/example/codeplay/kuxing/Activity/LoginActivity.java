@@ -70,6 +70,8 @@ public class LoginActivity extends AppCompatActivity {
         etName = (EditText) findViewById(R.id.uNameEditText);
         etPwd = (EditText) findViewById(R.id.uPwdEditText);
         bnLogin = (Button)findViewById(R.id.loginButton);
+
+
         bnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
