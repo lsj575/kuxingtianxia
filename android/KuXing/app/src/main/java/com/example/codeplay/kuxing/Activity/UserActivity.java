@@ -1,41 +1,80 @@
 package com.example.codeplay.kuxing.Activity;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import android.graphics.drawable.Drawable;
 import android.view.View;
-import android.widget.Button;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
-import android.widget.TextView;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.ImageView;
+import android.widget.ListView;
+import android.widget.Spinner;
 
+import com.example.codeplay.kuxing.Adapter.UserComAdapter;
+import com.example.codeplay.kuxing.Entity.Event;
 import com.example.codeplay.kuxing.R;
 
-public class UserActivity extends AppCompatActivity {
-    public UserActivity() {
-        super();
-    }
+import java.util.ArrayList;
 
+public class UserActivity extends AppCompatActivity {
+    private UserComAdapter userComAdapter;
+    private ArrayList<Event> gData = null;
+    private Context mContext;
+    private ListView listView;
+    private Spinner spinner;
+    private ImageView Imageback;
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user);
-
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
+        Imageback = findViewById(R.id.huitui);
+        Imageback.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                UserActivity.this.finish();
+            }
+        });
+        mContext = UserActivity.this;
+        listView = (ListView) findViewById(R.id.user_community);
+        gData = new ArrayList<Event>();
+        gData.add(new Event());
+        gData.add(new Event());
+        gData.add(new Event());
+        userComAdapter = new UserComAdapter(gData,mContext);
+        listView.setAdapter(userComAdapter);
+        spinner = findViewById(R.id.spinner);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter
+                .createFromResource(this, R.array.spingarr,
+                        android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(adapter);
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                                              @Override
+                                              public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                                                  Intent intent;
+                                                  switch (i) {
+                                                      case 1:
+                                                          intent = new Intent(UserActivity.this, ChangeInfoActivity.class);
+                                                          startActivity(intent);
+                                                          break;
+                                                      case 2:
+                                                          intent = new Intent(UserActivity.this, FrienActivity.class);
+                                                          startActivity(intent);
+                                                          break;
+                                                      case 3:
+                                                          intent = new Intent(UserActivity.this, FanActivity.class);
+                                                          startActivity(intent);
+                                                          break;
+                                                      case 4:
+                                                          intent = new Intent(UserActivity.this, BeginActivity.class);
+                                                          startActivity(intent);
+                                                          break;
+                                                  }
+                                              }
+                                              @Override
+                                              public void onNothingSelected(AdapterView<?> adapterView) { }
+                                          }
+        );
     }
 }

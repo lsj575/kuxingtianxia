@@ -35,11 +35,7 @@
         <activity
             android:name=".Activity.MainActivity"
             android:label="@string/app_name">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".Activity.LauncherActivity"
@@ -53,13 +49,21 @@
             android:process=":remote"/>
 
         <activity android:name=".Activity.DetailActivity" />
-        <activity android:name=".Activity.LoginActivity"/>
+        <activity android:name=".Activity.LoginActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity android:name=".Activity.RegisterActivity"/>
         <activity android:name=".Activity.ChangeInfoActivity"/>
         <activity android:name=".Activity.FrienActivity"/>
         <activity android:name=".Activity.FanActivity"/>
+        <activity android:name=".Activity.BeginActivity"/>
         <activity android:name=".Activity.UpdateDetailActivity" />
         <activity android:name=".Activity.InsertDetailActivity"/>
+        <activity android:name=".Activity.UserActivity"/>
     </application>
 
 </manifest>

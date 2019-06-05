@@ -20,6 +20,7 @@ import com.example.codeplay.kuxing.Fragment.FragmentCommunity;
 import com.example.codeplay.kuxing.Fragment.FragmentMap;
 import com.example.codeplay.kuxing.Fragment.FragmentMy;
 import com.example.codeplay.kuxing.R;
+import com.example.codeplay.kuxing.util.SQLiteDAOImpl;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -69,6 +70,8 @@ public class MainActivity extends AppCompatActivity implements RadioGroup.OnChec
         bottom_bar.setOnCheckedChangeListener(this);
         rb_map = (RadioButton)findViewById(R.id.radio0);
         rb_map.setChecked(true);
+        SQLiteDAOImpl sqLiteDAO = new SQLiteDAOImpl();
+
     }
 
     @Override

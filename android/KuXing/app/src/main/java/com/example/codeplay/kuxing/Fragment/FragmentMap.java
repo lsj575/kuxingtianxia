@@ -7,6 +7,8 @@ import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.design.widget.BottomSheetDialog;
 import android.util.DisplayMetrics;
@@ -46,8 +48,13 @@ import com.baidu.mapapi.map.MyLocationData;
 import com.baidu.mapapi.map.OverlayOptions;
 import com.baidu.mapapi.map.Text;
 import com.baidu.mapapi.model.LatLng;
+import com.example.codeplay.kuxing.Activity.InsertDetailActivity;
+import com.example.codeplay.kuxing.Activity.LoginActivity;
+import com.example.codeplay.kuxing.Activity.MainActivity;
 import com.example.codeplay.kuxing.R;
+import com.example.codeplay.kuxing.util.DatabaseHelper;
 import com.example.codeplay.kuxing.util.NormalPostRequest;
+import com.example.codeplay.kuxing.util.SQLiteDAOImpl;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -85,6 +92,21 @@ public class FragmentMap extends Fragment implements View.OnClickListener {
     @Override
     public void onStart() {
         initMap();
+        DatabaseHelper dbHelper = new DatabaseHelper(getActivity());
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        //Cursor cursor = db.rawQuery("SELECT * FROM user WHERE name = ?", new String[]{"codeplay"});
+
+        Cursor cursor = db.query("users", new String[]{"username"}, null, null, null, null, null);
+        //利用游标遍历所有数据对象
+        //为了显示全部，把所有对象连接起来，放到TextView中
+        String textview_data = "";
+        while(cursor.moveToNext()) {
+            String name = cursor.getString(cursor.getColumnIndex("username"));
+            textview_data = textview_data + "\n" + name;
+        }
+
+        TextView sqlresult = (TextView) getActivity().findViewById(R.id.sqlresult);
+        sqlresult.setText(String.valueOf(textview_data));
         groups = new ArrayList<String>();
         items = new ArrayList<ArrayList<Map<String, String>>>();
         data = new HashMap<>();
@@ -150,8 +172,9 @@ public class FragmentMap extends Fragment implements View.OnClickListener {
         btn_add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                bottom_bar.setVisibility(View.GONE);
-                fm.beginTransaction().replace(R.id.map_place, new FragmentPlace()).commit();
+                Intent intent = new Intent();
+                intent.setClass(getActivity(), InsertDetailActivity.class);
+                startActivity(intent);
             }
         });
         search_text = (TextView) this.getView().findViewById(R.id.search_text);

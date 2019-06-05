@@ -7,7 +7,7 @@ import (
 )
 
 func AddFanHandler(w http.ResponseWriter, r *http.Request)  {
-	attentionUsername := r.FormValue("attention_username")
+	attentionUsername := r.FormValue("username")
 	beAttentionUsername := r.FormValue("be_attention_username")
 
 	fan := mylayer.AddFan(attentionUsername, beAttentionUsername)
@@ -26,7 +26,7 @@ func GetFansHandler(w http.ResponseWriter, r *http.Request)  {
 	// 查询记事信息
 	fans, err := mylayer.GetFans(username)
 	if err != nil {
-		w.WriteHeader(http.StatusForbidden)
+		w.Write(util.NewRespMsg(1, "FAILED", nil).JSONBytes())
 		return
 	}
 
@@ -40,7 +40,12 @@ func GetFansHandler(w http.ResponseWriter, r *http.Request)  {
 }
 
 func GetFansNote(w http.ResponseWriter, r *http.Request)  {
-	//username := r.FormValue("username")
+	username := r.FormValue("username")
 
-	//notes, err := mylayer.GetFansNote(username)
+	notes, err := mylayer.GetFansNote(username)
+	if err != nil {
+		w.Write(util.NewRespMsg(1, "FAILED", nil).JSONBytes())
+		return
+	}
+	w.Write(util.NewRespMsg(0, "SUCCESS", notes).JSONBytes())
 }
