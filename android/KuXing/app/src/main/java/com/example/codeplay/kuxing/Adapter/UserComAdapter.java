@@ -1,12 +1,14 @@
 package com.example.codeplay.kuxing.Adapter;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.example.codeplay.kuxing.Entity.Event;
 import com.example.codeplay.kuxing.R;
@@ -42,17 +44,29 @@ public class UserComAdapter extends BaseAdapter {
         convertView = LayoutInflater.from(mContext).inflate(R.layout.community_group_item,parent,false);
         GridView gridView;
         PictureAdapter pictureAdapter;
-        ArrayList<Integer> mdata;
+        ArrayList<Bitmap> mdata;
         gridView = convertView.findViewById(R.id.pictures2);
-        mdata = new ArrayList<Integer>();
+        mdata = new ArrayList<Bitmap>();
         /**
          * 需要显示的图片
          */
-        mdata.add(1);
-        mdata.add(1);
-        mdata.add(1);
+        mdata.add(null);
+        mdata.add(null);
+        mdata.add(null);
         pictureAdapter = new PictureAdapter(mdata,mContext);
         gridView.setAdapter(pictureAdapter);
+        TextView location;
+        TextView content;
+        TextView date;
+        TextView friendName;
+        friendName = (TextView)convertView.findViewById(R.id.friendname);
+        friendName.setText(gData.get(position).getUsername());
+        location = (TextView)convertView.findViewById(R.id.location1);
+        location.setText(gData.get(position).getLocation());
+        content = (TextView)convertView.findViewById(R.id.neirong2) ;
+        content.setText(gData.get(position).getContent());
+        date = (TextView)convertView.findViewById(R.id.date2) ;
+        date.setText(gData.get(position).getDate().toLocaleString());
 
         return convertView;
     }
